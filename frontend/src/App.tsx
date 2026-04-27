@@ -1,13 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import AppRouter from "./app/router"
+
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<div className="container text-center font-light mx-auto text-4xl font-bold">Welcome to NorthPay</div>} />
-      </Routes>
-    </BrowserRouter>
+    <AppRouter />
   )
 }
 
