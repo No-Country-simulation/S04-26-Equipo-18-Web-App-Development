@@ -75,6 +75,7 @@ Librerías sugeridas (lo vemos en equipo)
 ## 🗂️ Organización del repositorio (Frontend)
 Estructura propuesta (sujeta a ajustes en equipo) Featured-Based:
 
+```
 src/
  ├─ app/
  │   ├─ router.tsx
@@ -108,3 +109,4 @@ src/
  │   └─ socketClient.ts
  │
  └─ assets/
+ ```
