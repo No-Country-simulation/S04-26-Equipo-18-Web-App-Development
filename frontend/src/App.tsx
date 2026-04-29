@@ -1,10 +1,14 @@
 import AppRouter from "./app/router"
+import { SnackbarProvider } from "notistack";
 
 
 function App() {
 
   return (
-    <AppRouter />
+    <div className="font-sans">
+      <AppRouter />
+      <SnackbarProvider />
+    </div>
   )
 }
 

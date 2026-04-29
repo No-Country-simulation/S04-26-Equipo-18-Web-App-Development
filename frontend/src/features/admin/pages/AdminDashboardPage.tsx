@@ -1,8 +1,21 @@
+import AdminHeader from "../components/AdminHeader"
+import { ContractorTable } from "../components/ContractorTable"
+import StatsCards from "../components/StatsCard"
+
 const AdminDashboardPage = () => {
   return (
     <section className="space-y-4">
-      <h1 className="text-2xl font-bold tracking-tight text-slate-900">Admin dashboard</h1>
-      <p className="text-slate-600">Track onboarding progress, pending validations, and activation status in one place.</p>
+      <AdminHeader title="Dashboard" subtitle="Monitor and manage contractor onboarding" />
+
+      <div className="p-6 space-y-6">
+        <StatsCards />
+        <div>
+          <h2 className="text-lg font-semibold text-foreground mb-4">
+            Recent Contractors
+          </h2>
+          <ContractorTable />
+        </div>
+      </div>
     </section>
   )
 }
