@@ -19,17 +19,17 @@ const OnboardingHomePage = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              to="/onboarding/demo"
+              to="/invite/NORTH-2024-ABC123"
               className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
             >
-              Try Demo Onboarding
+              Start with Invitation
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              to="/admin"
+              to="/auth/admin/login"
               className="flex items-center gap-2 px-6 py-3 border border-border text-foreground rounded-lg font-medium hover:bg-muted transition-colors"
             >
-              View Admin Dashboard
+              Open Admin Portal
             </Link>
           </div>
         </div>
@@ -89,7 +89,7 @@ const OnboardingHomePage = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link
-              to="/onboarding/demo"
+              to="/invite/NORTH-2024-ABC123"
               className="group bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors"
             >
               <div className="flex items-center justify-between mb-4">
@@ -100,12 +100,12 @@ const OnboardingHomePage = () => {
               </div>
               <h3 className="font-semibold text-foreground mb-2">Contractor Onboarding</h3>
               <p className="text-sm text-muted-foreground">
-                Experience the 5-step onboarding flow as a new contractor would see it.
+                Enter from an invitation link and continue through auth and onboarding.
               </p>
             </Link>
 
             <Link
-              to="/admin"
+              to="/auth/admin/login"
               className="group bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-colors"
             >
               <div className="flex items-center justify-between mb-4">

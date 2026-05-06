@@ -13,9 +13,9 @@ const AdminSidebar = () => {
     return (
         <aside className="fixed left-0 top-0 h-full w-64 bg-sidebar text-sidebar-foreground flex flex-col border-r border-sidebar-border">
             {/* Logo */}
-            <div className="p-5 border-b border-sidebar-border">
+            <div className="bg-white p-5 border-b border-sidebar-border">
                 <Link to="/admin" className="flex items-center gap-3">
-                    <img className='h-12 fill-white bg-white rounded p-1' src="/northpay_nobackground_2x1.png" alt="NorthPay Logo" />
+                    <img className='h-14 fill-white bg-white rounded p-1' src="/northpay_nobackground_2x1.png" alt="NorthPay Logo" />
                     <div>
                         <p className="text-xs text-sidebar-foreground/80">Admin Portal</p>
                     </div>
@@ -56,9 +56,11 @@ const AdminSidebar = () => {
                         <p className="text-sm font-medium text-sidebar-foreground truncate">Operator</p>
                         <p className="text-xs text-sidebar-foreground/60 truncate">ops@northpay.com</p>
                     </div>
-                    <button className="p-2 rounded-lg hover:bg-sidebar-accent/50 transition-colors">
-                        <LogOut className="w-4 h-4 text-sidebar-foreground/60 hover:text-chart-4" />
-                    </button>
+                    <NavLink to={'/'}>
+                        <div className="p-2 rounded-lg  transition-colors">
+                            <LogOut className="w-4 h-4 text-destructive hover:scale-105 transition-transform duration-150" />
+                        </div>
+                    </NavLink>
                 </div>
             </div>
         </aside>

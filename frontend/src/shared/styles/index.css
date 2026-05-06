@@ -1,0 +1,16 @@
+/* Motor de Tailwind + paquetes de estilos externos */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+
+/* Capas de estilos del proyecto (el orden importa) */
+/* 1) tokens: valores crudos de diseño, incluye dark mode */
+@import "./tokens.css";
+/* 2) theme: mapea los tokens a variables de Tailwind */
+@import "./theme.css";
+/* 3) base: estilos globales y reglas de reset */
+@import "./base.css";
+
+/* Dark mode basado en clase: agregar .dark al <html> para activarlo */
+@custom-variant dark (&:is(.dark *));

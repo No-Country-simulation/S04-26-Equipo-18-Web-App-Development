@@ -1,0 +1,24 @@
+/*
+  CAPA DE ESTILOS GLOBALES BASE
+  - Defaults a nivel de elemento compartidos por toda la app.
+  - Solo reglas genéricas (html/body/button/*). No estilos de features o componentes.
+  - Los estilos propios de un componente van en su className en el TSX.
+*/
+
+html {
+    @apply font-sans;
+}
+
+body {
+    @apply bg-background text-foreground;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+}
