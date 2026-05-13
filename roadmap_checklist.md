@@ -13,7 +13,7 @@ Ultima revision: 2026-05-13
 - [x] Enrutado principal con React Router
 - [x] Layout publico y layout admin
 - [x] Sistema de estilos con Tailwind v4 + componentes UI
-- [~] README alineado al estado real (falta actualizar detalles tecnicos actuales)
+- [x] README y docs base alineados al estado actual
 
 ## 1.1) Decisiones de producto (MVP)
 - [x] Flujo confirmado: link de invitacion -> registro/login -> onboarding
@@ -57,6 +57,11 @@ Ultima revision: 2026-05-13
 - [~] Servicios reales por feature (`onboarding/services.ts`, `admin/services.ts`) (pendiente conectar backend)
 - [~] Manejo de estado server/client robusto (ej. TanStack Query + store global) (base de hooks implementada)
 - [x] Persistencia local del progreso de onboarding entre vistas
+
+## 5.1) Handoff para equipo frontend
+- [x] Guia de arquitectura frontend backend-ready (`docs/frontend-architecture.md`)
+- [x] Draft de contrato frontend-backend (`docs/api-contract-frontend-backend.md`)
+- [x] Checklist de PR para alineacion del equipo (`docs/frontend-pr-checklist.md`)
 
 ## 6) Librerias del stack (estado)
 - [x] Tailwind CSS

@@ -115,3 +115,10 @@ src/
  │
  └─ assets/
  ```
+
+---
+
+## Documentacion para el equipo frontend
+- Arquitectura frontend (backend-ready): `docs/frontend-architecture.md`
+- Contrato inicial frontend-backend: `docs/api-contract-frontend-backend.md`
+- Checklist de PR frontend: `docs/frontend-pr-checklist.md`
