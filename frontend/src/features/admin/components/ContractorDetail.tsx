@@ -40,7 +40,8 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
         alert("Corrections requested! (This is a placeholder action)");
     };
 
-    const handleApproveDoc = (doc: ContractorDocument) => {
+    const handleApproveDoc = () => {
+        // Agregar argumento doc: ContractorDocument
         // approveDocument(contractor.id, doc.id);
         alert("Document approved! (This is a placeholder action)");
     };
