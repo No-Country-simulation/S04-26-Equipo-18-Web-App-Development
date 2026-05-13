@@ -22,8 +22,8 @@ const AppRouter = () => {
           <Route path="/onboarding" element={<OnboardingHomePage />} />
           <Route path="/invite/:token" element={<InviteAccessPage />} />
           <Route path="/contractor/auth" element={<ContractorAuthPage />} />
-          <Route path="/contractor/dashboard" element={<ContractorDashboardPage />} />
           <Route element={<RequireContractorAuth />}>
+            <Route path="/contractor/dashboard" element={<ContractorDashboardPage />} />
             <Route path="/onboarding/:contractorId" element={<OnboardingFlowPage />} />
           </Route>
           <Route path="/auth/admin/login" element={<AdminAuthPage />} />
