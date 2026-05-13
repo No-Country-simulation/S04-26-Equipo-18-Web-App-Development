@@ -21,7 +21,7 @@ const AdminHeader = ({ title, subtitle, unreadCount = 5 }: AdminHeaderProps) => 
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                         <input
                             type="text"
-                            placeholder="Search contractors..."
+                            placeholder="Buscar contratistas..."
                             className="w-64 pl-10 pr-4 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
                         />
                     </div>

@@ -38,6 +38,7 @@ const OnboardingFlowPage = () => {
 
   return (
     <OnboardingWizard
+      key={contractor.id}
       contractor={contractor}
       onContractorUpdate={async (updates) => {
         await updateContractor(contractor.id, updates)

@@ -50,7 +50,7 @@ const ContractorAuth = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(
-    initialInvitationEmail ? 'Invitation token pre-validated from your access link.' : '',
+    initialInvitationEmail ? 'Token de invitación prevalidado desde tu enlace de acceso.' : '',
   )
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const ContractorAuth = () => {
     const hasSupportedFormat = normalizedToken.startsWith('NORTH-2024-')
 
     if (!hasSupportedFormat) {
-      setError('Invalid token format. Try a NORTH-2024 token.')
+      setError('Formato de token inválido. Probá con un token NORTH-2024.')
       setIsLoading(false)
       return
     }
@@ -84,7 +84,7 @@ const ContractorAuth = () => {
     setTokenValidated(true)
     setTokenEmail(invitationEmail ?? 'invited.contractor@northpay.com')
     setRegisterEmail(invitationEmail ?? '')
-    setSuccess('Token validated successfully!')
+    setSuccess('Token validado correctamente.')
     setIsLoading(false)
   }
 
@@ -94,22 +94,22 @@ const ContractorAuth = () => {
     setSuccess('')
 
     if (!tokenValidated) {
-      setError('Validate your invitation token first.')
+      setError('Primero validá tu token de invitación.')
       return
     }
 
     if (registerPassword !== confirmPassword) {
-      setError('Passwords do not match')
+      setError('Las contraseñas no coinciden')
       return
     }
 
     if (registerPassword.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError('La contraseña debe tener al menos 6 caracteres')
       return
     }
 
     if (tokenEmail && registerEmail.trim().toLowerCase() !== tokenEmail.trim().toLowerCase()) {
-      setError('The registration email must match the invited email linked to the token.')
+      setError('El email de registro debe coincidir con el email invitado asociado al token.')
       return
     }
 
@@ -143,7 +143,7 @@ const ContractorAuth = () => {
     const matchedContractor = await getContractorByEmail(loginEmail.trim().toLowerCase())
 
     if (!matchedContractor || loginPassword.length < 6) {
-      setError('Invalid credentials for demo access.')
+      setError('Credenciales inválidas para el acceso demo.')
       setIsLoading(false)
       return
     }
@@ -169,9 +169,9 @@ const ContractorAuth = () => {
   return (
     <Card className="border-border shadow-lg">
       <CardHeader className="pb-2 text-center">
-        <CardTitle className="text-2xl font-bold text-foreground">Contractor Access</CardTitle>
+        <CardTitle className="text-2xl font-bold text-foreground">Acceso de contratistas</CardTitle>
         <CardDescription className="text-muted-foreground">
-          Register with your invitation token or sign in to continue your onboarding
+          Registrate con tu token de invitación o iniciá sesión para continuar tu onboarding
         </CardDescription>
       </CardHeader>
 
@@ -201,11 +201,11 @@ const ContractorAuth = () => {
           <TabsList className="mb-6 grid w-full grid-cols-2">
             <TabsTrigger value="register" className="gap-2">
               <Ticket className="h-4 w-4" />
-              Register
+              Registrarse
             </TabsTrigger>
             <TabsTrigger value="login" className="gap-2">
               <Lock className="h-4 w-4" />
-              Sign In
+              Iniciar sesión
             </TabsTrigger>
           </TabsList>
 
@@ -215,13 +215,13 @@ const ContractorAuth = () => {
                 <div className="mb-4 rounded-lg bg-muted p-4 text-center">
                   <Ticket className="mx-auto mb-2 h-8 w-8 text-primary" />
                   <p className="text-sm text-muted-foreground">
-                    Enter the invitation token you received from NorthPay to create your account
+                    Ingresá el token de invitación que recibiste de NorthPay para crear tu cuenta
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="token" className="text-foreground">
-                    Invitation Token
+                    Token de invitación
                   </Label>
                   <Input
                     id="token"
@@ -238,11 +238,11 @@ const ContractorAuth = () => {
                   {isLoading ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Validating...
+                      Validando...
                     </>
                   ) : (
                     <>
-                      Validate Token
+                      Validar token
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}
@@ -250,7 +250,7 @@ const ContractorAuth = () => {
 
                 <div className="pt-2 text-center">
                   <p className="text-xs text-muted-foreground">
-                    Demo tokens: <span className="font-mono">NORTH-2024-ABC123</span> or{' '}
+                    Tokens demo: <span className="font-mono">NORTH-2024-ABC123</span> o{' '}
                     <span className="font-mono">NORTH-2024-DEF456</span>
                   </p>
                 </div>
@@ -260,24 +260,24 @@ const ContractorAuth = () => {
                 <div className="mb-4 flex items-center gap-3 rounded-lg border border-accent/20 bg-accent/10 p-3">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-green-500" />
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-accent-foreground">Token validated</p>
+                    <p className="text-sm font-medium text-accent-foreground">Token validado</p>
                     <p className="truncate font-mono text-xs text-muted-foreground">{token}</p>
                   </div>
                   <Button type="button" variant="ghost" size="sm" onClick={resetTokenValidation} className="text-xs">
-                    Change
+                    Cambiar
                   </Button>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="register-email" className="text-foreground">
-                    Email Address
+                    Correo electrónico
                   </Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
                       id="register-email"
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="tu@email.com"
                       value={registerEmail}
                       onChange={(e) => setRegisterEmail(e.target.value)}
                       className="pl-10"
@@ -287,21 +287,21 @@ const ContractorAuth = () => {
                   </div>
                   {tokenEmail && registerEmail !== tokenEmail && (
                     <p className="rounded bg-warning/10 p-2 text-xs text-warning-foreground">
-                      Note: the invitation was sent to {tokenEmail}
+                      Nota: la invitación se envió a {tokenEmail}
                     </p>
                   )}
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="register-password" className="text-foreground">
-                    Password
+                    Contraseña
                   </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
                       id="register-password"
                       type={showRegisterPassword ? 'text' : 'password'}
-                      placeholder="Create a password"
+                      placeholder="Creá una contraseña"
                       value={registerPassword}
                       onChange={(e) => setRegisterPassword(e.target.value)}
                       className="pl-10 pr-10"
@@ -321,14 +321,14 @@ const ContractorAuth = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="confirm-password" className="text-foreground">
-                    Confirm Password
+                    Confirmar contraseña
                   </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
                       id="confirm-password"
                       type={showConfirmPassword ? 'text' : 'password'}
-                      placeholder="Confirm your password"
+                      placeholder="Confirmá tu contraseña"
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       className="pl-10 pr-10"
@@ -344,7 +344,7 @@ const ContractorAuth = () => {
                     </button>
                   </div>
                   {confirmPassword && registerPassword !== confirmPassword && (
-                    <p className="text-xs text-destructive">Passwords do not match</p>
+                    <p className="text-xs text-destructive">Las contraseñas no coinciden</p>
                   )}
                 </div>
 
@@ -356,11 +356,11 @@ const ContractorAuth = () => {
                   {isLoading ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Creating Account...
+                      Creando cuenta...
                     </>
                   ) : (
                     <>
-                      Create Account
+                      Crear cuenta
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}
@@ -373,19 +373,19 @@ const ContractorAuth = () => {
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="mb-4 rounded-lg bg-muted p-4 text-center">
                 <Lock className="mx-auto mb-2 h-8 w-8 text-primary" />
-                <p className="text-sm text-muted-foreground">Sign in to continue your onboarding process</p>
+                <p className="text-sm text-muted-foreground">Iniciá sesión para continuar tu proceso de onboarding</p>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="login-email" className="text-foreground">
-                  Email Address
+                  Correo electrónico
                 </Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="login-email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="tu@email.com"
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
                     className="pl-10"
@@ -397,14 +397,14 @@ const ContractorAuth = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="login-password" className="text-foreground">
-                  Password
+                  Contraseña
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="login-password"
                     type={showLoginPassword ? 'text' : 'password'}
-                    placeholder="Enter your password"
+                    placeholder="Ingresá tu contraseña"
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                     className="pl-10 pr-10"
@@ -425,11 +425,11 @@ const ContractorAuth = () => {
                 {isLoading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    Signing In...
+                    Iniciando sesión...
                   </>
                 ) : (
                   <>
-                    Sign In
+                    Iniciar sesión
                     <ArrowRight className="h-4 w-4" />
                   </>
                 )}
@@ -441,9 +441,9 @@ const ContractorAuth = () => {
                   <span className="font-mono">ana123</span>
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Need an invitation?{' '}
+                  ¿Necesitás una invitación?{' '}
                   <Link to="/invite/NORTH-2024-ABC123" className="text-primary hover:underline">
-                    Use sample invite
+                    Usar invitación de ejemplo
                   </Link>
                 </p>
               </div>

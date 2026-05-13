@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { formatDistanceToNow, format } from "date-fns";
+import { format } from "date-fns";
 import {
     User, Mail, Phone, MapPin, Calendar, FileText,
     CreditCard, Building2, Globe, CheckCircle2, XCircle,
@@ -25,7 +25,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
     const handleApprove = () => {
         // approveContractor(contractor.id);
         // navigate("/admin/contractors");
-        alert("Contractor approved! (This is a placeholder action)");
+        alert("Contratista aprobado (acción de demostración)");
     };
 
     const handleReject = () => {
@@ -37,13 +37,13 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
     const handleRequestCorrections = () => {
         // requestCorrections(contractor.id, notes);
         setShowCorrectionModal(false);
-        alert("Corrections requested! (This is a placeholder action)");
+        alert("Correcciones solicitadas (acción de demostración)");
     };
 
     const handleApproveDoc = () => {
         // Agregar argumento doc: ContractorDocument
         // approveDocument(contractor.id, doc.id);
-        alert("Document approved! (This is a placeholder action)");
+        alert("Documento aprobado (acción de demostración)");
     };
 
     const handleRejectDoc = () => {
@@ -51,7 +51,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
             // rejectDocument(contractor.id, showDocRejectModal.id, notes);
             setShowDocRejectModal(null);
             setNotes("");
-            alert("Document rejected! (This is a placeholder action)");
+            alert("Documento rechazado (acción de demostración)");
         }
     };
 
@@ -69,7 +69,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                 className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
             >
                 <ArrowLeft className="w-4 h-4" />
-                Back to Contractors
+                Volver a contratistas
             </button>
 
             {/* Header */}
@@ -95,19 +95,19 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                             onClick={() => setShowCorrectionModal(true)}
                             className="px-4 py-2 border border-border rounded-lg text-foreground hover:bg-muted transition-colors"
                         >
-                            Request Corrections
+                            Solicitar correcciones
                         </button>
                         <button
                             onClick={() => setShowRejectModal(true)}
                             className="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:bg-destructive/90 transition-colors"
                         >
-                            Reject
+                            Rechazar
                         </button>
                         <button
                             onClick={handleApprove}
                             className="px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success/90 transition-colors"
                         >
-                            Approve
+                            Aprobar
                         </button>
                     </div>
                 )}
@@ -119,7 +119,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                     <div className="flex items-start gap-3">
                         <MessageSquare className="w-5 h-5 text-warning-foreground mt-0.5" />
                         <div>
-                            <p className="font-medium text-foreground">Operator Notes</p>
+                            <p className="font-medium text-foreground">Notas de operaciones</p>
                             <p className="text-sm text-muted-foreground mt-1">{contractor.operatorNotes}</p>
                         </div>
                     </div>
@@ -132,7 +132,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                 <div className="bg-card border border-border rounded-xl p-6">
                     <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                         <User className="w-5 h-5 text-primary" />
-                        Personal Information
+                        Información personal
                     </h3>
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
@@ -141,12 +141,12 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                         </div>
                         <div className="flex items-center gap-3">
                             <Phone className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-sm text-foreground">{contractor.personalData.phone || "Not provided"}</span>
+                            <span className="text-sm text-foreground">{contractor.personalData.phone || "No informado"}</span>
                         </div>
                         <div className="flex items-center gap-3">
                             <MapPin className="w-4 h-4 text-muted-foreground" />
                             <span className="text-sm text-foreground">
-                                {contractor.personalData.address || "Not provided"}
+                                {contractor.personalData.address || "No informado"}
                                 {contractor.personalData.country && `, ${contractor.personalData.country}`}
                             </span>
                         </div>
@@ -154,13 +154,13 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                             <Calendar className="w-4 h-4 text-muted-foreground" />
                             <span className="text-sm text-foreground">
                                 {contractor.personalData.dateOfBirth
-                                    ? format(new Date(contractor.personalData.dateOfBirth), "MMMM d, yyyy")
-                                    : "Not provided"}
+                                    ? format(new Date(contractor.personalData.dateOfBirth), "dd/MM/yyyy")
+                                    : "No informado"}
                             </span>
                         </div>
                         <div className="flex items-center gap-3">
                             <FileText className="w-4 h-4 text-muted-foreground" />
-                            <span className="text-sm text-foreground">Tax ID: {contractor.personalData.taxId || "Not provided"}</span>
+                            <span className="text-sm text-foreground">Identificación fiscal: {contractor.personalData.taxId || "No informada"}</span>
                         </div>
                     </div>
                 </div>
@@ -169,26 +169,26 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                 <div className="bg-card border border-border rounded-xl p-6">
                     <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                         <Clock className="w-5 h-5 text-primary" />
-                        Timeline
+                        Línea de tiempo
                     </h3>
                     <div className="space-y-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-muted-foreground">Invited</span>
+                            <span className="text-sm text-muted-foreground">Invitación</span>
                             <span className="text-sm text-foreground">
-                                {format(new Date(contractor.invitedAt), "MMM d, yyyy")}
+                                {format(new Date(contractor.invitedAt), "dd/MM/yyyy")}
                             </span>
                         </div>
                         <div className="flex items-center justify-between">
-                            <span className="text-sm text-muted-foreground">Last Updated</span>
+                            <span className="text-sm text-muted-foreground">Última actualización</span>
                             <span className="text-sm text-foreground">
-                                {formatDistanceToNow(new Date(contractor.lastUpdatedAt), { addSuffix: true })}
+                                {format(new Date(contractor.lastUpdatedAt), "dd/MM/yyyy HH:mm")}
                             </span>
                         </div>
                         {contractor.contractSignedAt && (
                             <div className="flex items-center justify-between">
-                                <span className="text-sm text-muted-foreground">Contract Signed</span>
+                                <span className="text-sm text-muted-foreground">Contrato firmado</span>
                                 <span className="text-sm text-foreground">
-                                    {format(new Date(contractor.contractSignedAt), "MMM d, yyyy")}
+                                    {format(new Date(contractor.contractSignedAt), "dd/MM/yyyy")}
                                 </span>
                             </div>
                         )}
@@ -199,7 +199,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                 <div className="bg-card border border-border rounded-xl p-6">
                     <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                         <FileText className="w-5 h-5 text-primary" />
-                        Documents ({contractor.documents.length})
+                        Documentos ({contractor.documents.length})
                     </h3>
                     {contractor.documents.length > 0 ? (
                         <div className="space-y-3">
@@ -223,14 +223,14 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                                                 <button
                                                     onClick={() => handleApproveDoc()}
                                                     className="p-1.5 rounded-lg bg-accent/10 text-success hover:bg-success-foreground/20 transition-colors"
-                                                    title="Approve"
+                                                    title="Aprobar"
                                                 >
                                                     <CheckCircle2 className="w-4 h-4" />
                                                 </button>
                                                 <button
                                                     onClick={() => setShowDocRejectModal(doc)}
                                                     className="p-1.5 rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors"
-                                                    title="Reject"
+                                                    title="Rechazar"
                                                 >
                                                     <XCircle className="w-4 h-4" />
                                                 </button>
@@ -239,13 +239,13 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                                         {doc.status === "approved" && (
                                             <span className="flex items-center gap-1 text-xs text-accent">
                                                 <CheckCircle2 className="w-4 h-4" />
-                                                Approved
+                                                Aprobado
                                             </span>
                                         )}
                                         {doc.status === "rejected" && (
                                             <span className="flex items-center gap-1 text-xs text-destructive">
                                                 <XCircle className="w-4 h-4" />
-                                                Rejected
+                                                Rechazado
                                             </span>
                                         )}
                                     </div>
@@ -253,7 +253,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-sm text-muted-foreground">No documents uploaded yet.</p>
+                        <p className="text-sm text-muted-foreground">Todavía no hay documentos cargados.</p>
                     )}
                 </div>
 
@@ -261,7 +261,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                 <div className="bg-card border border-border rounded-xl p-6">
                     <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
                         <CreditCard className="w-5 h-5 text-primary" />
-                        Payment Method
+                        Método de pago
                     </h3>
                     {contractor.paymentMethod ? (
                         <div className="space-y-3">
@@ -275,18 +275,18 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                                         {contractor.paymentMethod.type.replace("-", " ")}
                                     </p>
                                     <p className="text-xs text-muted-foreground">
-                                        Currency: {contractor.paymentMethod.currency}
+                                        Moneda: {contractor.paymentMethod.currency}
                                     </p>
                                 </div>
                             </div>
                             {contractor.paymentMethod.bankName && (
                                 <p className="text-sm text-muted-foreground">
-                                    Bank: {contractor.paymentMethod.bankName}
+                                    Banco: {contractor.paymentMethod.bankName}
                                 </p>
                             )}
                             {contractor.paymentMethod.accountNumber && (
                                 <p className="text-sm text-muted-foreground">
-                                    Account: {contractor.paymentMethod.accountNumber}
+                                    Cuenta: {contractor.paymentMethod.accountNumber}
                                 </p>
                             )}
                             {contractor.paymentMethod.email && (
@@ -296,7 +296,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                             )}
                         </div>
                     ) : (
-                        <p className="text-sm text-muted-foreground">No payment method configured yet.</p>
+                        <p className="text-sm text-muted-foreground">Todavía no hay un método de pago configurado.</p>
                     )}
                 </div>
             </div>
@@ -306,19 +306,19 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/20 backdrop-blur-sm">
                     <div className="bg-card border border-border rounded-xl p-6 w-full max-w-md mx-4 shadow-xl">
                         <h3 className="text-lg font-semibold text-foreground mb-2">
-                            {showRejectModal && "Reject Application"}
-                            {showCorrectionModal && "Request Corrections"}
-                            {showDocRejectModal && "Reject Document"}
+                            {showRejectModal && "Rechazar solicitud"}
+                            {showCorrectionModal && "Solicitar correcciones"}
+                            {showDocRejectModal && "Rechazar documento"}
                         </h3>
                         <p className="text-sm text-muted-foreground mb-4">
-                            {showRejectModal && "Please provide a reason for rejecting this application."}
-                            {showCorrectionModal && "Describe what corrections are needed."}
-                            {showDocRejectModal && `Provide a reason for rejecting "${showDocRejectModal.name}".`}
+                            {showRejectModal && "Indicá el motivo del rechazo de esta solicitud."}
+                            {showCorrectionModal && "Detallá las correcciones necesarias."}
+                            {showDocRejectModal && `Indicá el motivo del rechazo de "${showDocRejectModal.name}".`}
                         </p>
                         <textarea
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
-                            placeholder="Enter your notes..."
+                            placeholder="Escribí tus observaciones..."
                             className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
                             rows={4}
                         />
@@ -332,7 +332,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                                 }}
                                 className="flex-1 py-2 border border-border rounded-lg hover:bg-muted transition-colors"
                             >
-                                Cancel
+                                Cancelar
                             </button>
                             <button
                                 onClick={() => {
@@ -346,9 +346,9 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                                     : "bg-muted text-muted-foreground cursor-not-allowed"
                                     }`}
                             >
-                                {showRejectModal && "Reject"}
-                                {showCorrectionModal && "Send Request"}
-                                {showDocRejectModal && "Reject Document"}
+                                {showRejectModal && "Rechazar"}
+                                {showCorrectionModal && "Enviar solicitud"}
+                                {showDocRejectModal && "Rechazar documento"}
                             </button>
                         </div>
                     </div>

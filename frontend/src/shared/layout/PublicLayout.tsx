@@ -7,13 +7,13 @@ const PublicLayout = () => {
         <div className="bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="min-h-screen mx-auto w-full max-w-6xl px-4">
+            <main className="min-h-screen mx-auto w-full px-4 md:px-0">
                 <Outlet />
             </main>
 
             {/* Footer */}
             <footer className="border-t border-border py-8 px-4">
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
+                <div className="mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                             <Zap className="w-4 h-4 text-primary-foreground" />
@@ -21,7 +21,7 @@ const PublicLayout = () => {
                         <span className="font-medium text-foreground">NorthPay</span>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                        Contractor Onboarding Platform Demo
+                        Demo de plataforma de onboarding de contratistas
                     </p>
                 </div>
             </footer>

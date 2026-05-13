@@ -9,7 +9,7 @@ export function StatsCards() {
         return (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-card border border-border rounded-xl p-5">
-                    <p className="text-sm text-muted-foreground">Loading stats...</p>
+                    <p className="text-sm text-muted-foreground">Cargando métricas...</p>
                 </div>
             </div>
         )
@@ -17,25 +17,25 @@ export function StatsCards() {
 
     const stats = [
         {
-            label: "Total Contractors",
+            label: "Total de contratistas",
             value: contractors.length,
             icon: Users,
             color: contractorStatusConfig["invited"].color,
         },
         {
-            label: "In Progress",
+            label: "En progreso",
             value: contractors.filter((c) => c.status === "in-progress").length,
             icon: Clock,
             color: contractorStatusConfig["in-progress"].color,
         },
         {
-            label: "Pending Verification",
+            label: "Pendiente de verificación",
             value: contractors.filter((c) => c.status === "pending-verification").length,
             icon: AlertTriangle,
             color: contractorStatusConfig["pending-verification"].color,
         },
         {
-            label: "Approved",
+            label: "Aprobados",
             value: contractors.filter((c) => c.status === "approved").length,
             icon: CheckCircle2,
             color: contractorStatusConfig["approved"].color,
