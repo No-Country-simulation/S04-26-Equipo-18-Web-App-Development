@@ -37,12 +37,17 @@ El foco del MVP es **demostrar el flujo completo**, priorizando funcionalidad y 
 
 ## Flujo general
 1. El contratista accede mediante un link de invitación
-2. Completa cada paso del onboarding
-3. El sistema cambia el estado a `PENDING_VERIFICATION`
-4. El operador revisa la información
-5. Se aprueba o solicita corrección
-6. El contratista recibe notificación
-7. La cuenta queda activada
+2. Se registra o inicia sesión con el email asociado a la invitación
+3. Completa cada paso del onboarding
+4. El sistema cambia el estado a `PENDING_VERIFICATION`
+5. El operador revisa la información
+6. Se aprueba o solicita corrección
+7. El contratista recibe notificación
+8. La cuenta queda activada
+
+### Decisión de flujo MVP (confirmada)
+- Flujo elegido: **Link de invitación => Registro/Login => Onboarding**
+- Objetivo: evitar documentos huérfanos y mantener trazabilidad por invitación/usuario desde el inicio.
 
 ---
 
@@ -75,6 +80,7 @@ Librerías sugeridas (lo vemos en equipo)
 ## 🗂️ Organización del repositorio (Frontend)
 Estructura propuesta (sujeta a ajustes en equipo) Featured-Based:
 
+```
 src/
  ├─ app/
  │   ├─ router.tsx
@@ -108,3 +114,11 @@ src/
  │   └─ socketClient.ts
  │
  └─ assets/
+ ```
+
+---
+
+## Documentacion para el equipo frontend
+- Arquitectura frontend (backend-ready): `docs/frontend-architecture.md`
+- Contrato inicial frontend-backend: `docs/api-contract-frontend-backend.md`
+- Checklist de PR frontend: `docs/frontend-pr-checklist.md`
