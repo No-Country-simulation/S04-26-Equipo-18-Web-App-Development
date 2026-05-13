@@ -4,8 +4,8 @@ import {
   AlertTriangle, Clock, User, ChevronDown, Filter
 } from "lucide-react";
 import type { Contractor, ContractorStatus } from "@/shared/types";
-import { contractors } from "@/app/store";
 import { Link } from "react-router-dom";
+import { useContractorsData } from "@/shared/hooks/useContractorsData";
 
 const statusConfig: Record<ContractorStatus, { label: string; color: string; icon: React.ElementType }> = {
   invited: { label: "Invited", color: "bg-muted text-muted-foreground", icon: Clock },
@@ -28,6 +28,15 @@ const statusFilters: ContractorStatus[] = [
 export function ContractorTable() {
   const [statusFilter, setStatusFilter] = useState<ContractorStatus | "all">("all");
   const [showFilters, setShowFilters] = useState(false);
+  const { contractors, isLoading } = useContractorsData();
+
+  if (isLoading) {
+    return (
+      <div className="bg-card border border-border rounded-xl p-6">
+        <p className="text-sm text-muted-foreground">Loading contractors...</p>
+      </div>
+    )
+  }
 
   const filteredContractors = contractors.filter((c) =>
     statusFilter === "all" ? true : c.status === statusFilter

@@ -39,9 +39,10 @@ const normalizeCompletedSteps = (contractor: Contractor) => {
 
 interface OnboardingWizardProps {
   contractor: Contractor
+  onContractorUpdate?: (updates: Partial<Contractor>) => Promise<void> | void
 }
 
-export const OnboardingWizard = ({ contractor }: OnboardingWizardProps) => {
+export const OnboardingWizard = ({ contractor, onContractorUpdate }: OnboardingWizardProps) => {
   const initialCompletedSteps = useMemo(() => normalizeCompletedSteps(contractor), [contractor])
 
   const [currentStep, setCurrentStep] = useState<OnboardingStep>(contractor.currentStep)
@@ -64,25 +65,27 @@ export const OnboardingWizard = ({ contractor }: OnboardingWizardProps) => {
 
   const currentStepIndex = steps.findIndex((step) => step.key === currentStep)
 
-  const markStepCompleted = (step: OnboardingStep) => {
-    setCompletedSteps((prev) => (prev.includes(step) ? prev : [...prev, step]))
+  const persistContractor = (updates: Partial<Contractor>) => {
+    if (!onContractorUpdate) {
+      return
+    }
+
+    void onContractorUpdate({ ...updates, lastUpdatedAt: new Date() })
   }
+
+  const withCompletedStep = (step: OnboardingStep, current = completedSteps) =>
+    current.includes(step) ? current : [...current, step]
 
   const goToStep = (step: OnboardingStep) => {
     setCurrentStep(step)
-  }
-
-  const goToNextStep = () => {
-    const nextStep = steps[currentStepIndex + 1]
-    if (nextStep) {
-      setCurrentStep(nextStep.key)
-    }
+    persistContractor({ currentStep: step })
   }
 
   const goToPreviousStep = () => {
     const previousStep = steps[currentStepIndex - 1]
     if (previousStep) {
       setCurrentStep(previousStep.key)
+      persistContractor({ currentStep: previousStep.key })
     }
   }
 
@@ -98,19 +101,36 @@ export const OnboardingWizard = ({ contractor }: OnboardingWizardProps) => {
   const updateDocument = (newDocument: Document) => {
     setDocuments((prev) => {
       const filtered = prev.filter((item) => item.type !== newDocument.type)
-      return [...filtered, newDocument]
+      const nextDocuments = [...filtered, newDocument]
+      persistContractor({ documents: nextDocuments, status: 'in-progress' })
+      return nextDocuments
     })
   }
 
   const removeDocument = (documentId: string) => {
-    setDocuments((prev) => prev.filter((item) => item.id !== documentId))
+    setDocuments((prev) => {
+      const nextDocuments = prev.filter((item) => item.id !== documentId)
+      persistContractor({ documents: nextDocuments, status: 'in-progress' })
+      return nextDocuments
+    })
   }
 
   const handleContractSign = () => {
+    const nextCompleted = withCompletedStep('contract')
+    const nextStep: OnboardingStep = 'payment-method'
+
     setContractSigned(true)
     setContractSignedAt(new Date())
-    markStepCompleted('contract')
-    goToNextStep()
+    setCompletedSteps(nextCompleted)
+    setCurrentStep(nextStep)
+
+    persistContractor({
+      contractSigned: true,
+      contractSignedAt: new Date(),
+      completedSteps: nextCompleted,
+      currentStep: nextStep,
+      status: 'in-progress',
+    })
   }
 
   const renderStep = () => {
@@ -120,9 +140,19 @@ export const OnboardingWizard = ({ contractor }: OnboardingWizardProps) => {
           <StepPersonalData
             initialData={personalData}
             onSubmit={(data) => {
+              const nextCompleted = withCompletedStep('personal-data')
+              const nextStep: OnboardingStep = 'documents'
+
               setPersonalData(data)
-              markStepCompleted('personal-data')
-              goToNextStep()
+              setCompletedSteps(nextCompleted)
+              setCurrentStep(nextStep)
+
+              persistContractor({
+                personalData: data,
+                completedSteps: nextCompleted,
+                currentStep: nextStep,
+                status: 'in-progress',
+              })
             }}
           />
         )
@@ -133,8 +163,18 @@ export const OnboardingWizard = ({ contractor }: OnboardingWizardProps) => {
             onAddDocument={updateDocument}
             onRemoveDocument={removeDocument}
             onNext={() => {
-              markStepCompleted('documents')
-              goToNextStep()
+              const nextCompleted = withCompletedStep('documents')
+              const nextStep: OnboardingStep = 'contract'
+
+              setCompletedSteps(nextCompleted)
+              setCurrentStep(nextStep)
+
+              persistContractor({
+                documents,
+                completedSteps: nextCompleted,
+                currentStep: nextStep,
+                status: 'in-progress',
+              })
             }}
             onBack={goToPreviousStep}
           />
@@ -154,9 +194,19 @@ export const OnboardingWizard = ({ contractor }: OnboardingWizardProps) => {
           <StepPayment
             initialMethod={paymentMethod}
             onSubmit={(method) => {
+              const nextCompleted = withCompletedStep('payment-method')
+              const nextStep: OnboardingStep = 'verification'
+
               setPaymentMethod(method)
-              markStepCompleted('payment-method')
-              goToNextStep()
+              setCompletedSteps(nextCompleted)
+              setCurrentStep(nextStep)
+
+              persistContractor({
+                paymentMethod: method,
+                completedSteps: nextCompleted,
+                currentStep: nextStep,
+                status: 'pending-verification',
+              })
             }}
             onBack={goToPreviousStep}
           />

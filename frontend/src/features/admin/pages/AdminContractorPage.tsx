@@ -1,15 +1,16 @@
 import { useParams } from "react-router-dom";
 import AdminHeader from "../components/AdminHeader"
 import ContractorDetail from "../components/ContractorDetail"
-import { contractors } from "@/app/store";
 import { enqueueSnackbar } from "notistack";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useContractorsData } from "@/shared/hooks/useContractorsData";
 
 const AdminContractorPage = () => {
 
     const params = useParams();
     const contractorId = params.id;
+    const { findById, isLoading } = useContractorsData();
 
     useEffect(() => {
         if (!contractorId) {
@@ -34,7 +35,18 @@ const AdminContractorPage = () => {
         )
     }
 
-    const contractor = contractors.find((c) => c.id === contractorId);
+    if (isLoading) {
+        return (
+            <section>
+                <AdminHeader title="Contractor Details" subtitle="View and manage contractor information" />
+                <div className="p-6 space-y-6">
+                    <p className="text-sm text-muted-foreground">Loading contractor...</p>
+                </div>
+            </section>
+        )
+    }
+
+    const contractor = findById(contractorId);
 
     return (
         <section>

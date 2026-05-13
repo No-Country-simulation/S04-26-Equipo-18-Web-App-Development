@@ -17,9 +17,8 @@ import {
   EyeOff,
 } from 'lucide-react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { contractors } from '@/app/store'
-
-const CONTRACTOR_SESSION_KEY = 'northpay-contractor-auth'
+import { getContractorSession, saveContractorSession } from '../session'
+import { getContractorByEmail } from '@/shared/data/contractorsRepository'
 
 const demoTokenToEmail: Record<string, string> = {
   'NORTH-2024-ABC123': 'ana.silva@email.com',
@@ -55,18 +54,13 @@ const ContractorAuth = () => {
   )
 
   useEffect(() => {
-    const raw = window.localStorage.getItem(CONTRACTOR_SESSION_KEY)
-    if (!raw) {
+    const session = getContractorSession()
+    if (!session) {
       return
     }
 
-    try {
-      const session = JSON.parse(raw) as { contractorId?: string }
-      if (session.contractorId) {
-        navigate(`/onboarding/${session.contractorId}`, { replace: true })
-      }
-    } catch {
-      window.localStorage.removeItem(CONTRACTOR_SESSION_KEY)
+    if (session.contractorId || session.email) {
+      navigate('/contractor/dashboard', { replace: true })
     }
   }, [navigate])
 
@@ -114,22 +108,28 @@ const ContractorAuth = () => {
       return
     }
 
+    if (tokenEmail && registerEmail.trim().toLowerCase() !== tokenEmail.trim().toLowerCase()) {
+      setError('The registration email must match the invited email linked to the token.')
+      return
+    }
+
     setIsLoading(true)
     await new Promise((resolve) => setTimeout(resolve, 700))
 
-    const matchedContractor = contractors.find(
-      (item) => item.personalData.email.toLowerCase() === registerEmail.trim().toLowerCase(),
-    )
+    const registrationEmail = (tokenEmail || registerEmail).trim().toLowerCase()
+
+    const matchedContractor = await getContractorByEmail(registrationEmail)
 
     const contractorId = matchedContractor?.id ?? '3'
 
-    window.localStorage.setItem(
-      CONTRACTOR_SESSION_KEY,
-      JSON.stringify({ contractorId, email: registerEmail.trim().toLowerCase() }),
-    )
+    saveContractorSession({
+      contractorId,
+      email: registrationEmail,
+      invitationToken: token.trim().toUpperCase(),
+    })
 
     setIsLoading(false)
-    navigate(`/onboarding/${contractorId}`, { replace: true })
+    navigate('/contractor/dashboard', { replace: true })
   }
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -140,9 +140,7 @@ const ContractorAuth = () => {
 
     await new Promise((resolve) => setTimeout(resolve, 700))
 
-    const matchedContractor = contractors.find(
-      (item) => item.personalData.email.toLowerCase() === loginEmail.trim().toLowerCase(),
-    )
+    const matchedContractor = await getContractorByEmail(loginEmail.trim().toLowerCase())
 
     if (!matchedContractor || loginPassword.length < 6) {
       setError('Invalid credentials for demo access.')
@@ -150,13 +148,13 @@ const ContractorAuth = () => {
       return
     }
 
-    window.localStorage.setItem(
-      CONTRACTOR_SESSION_KEY,
-      JSON.stringify({ contractorId: matchedContractor.id, email: matchedContractor.personalData.email }),
-    )
+    saveContractorSession({
+      contractorId: matchedContractor.id,
+      email: matchedContractor.personalData.email,
+    })
 
     setIsLoading(false)
-    navigate(`/onboarding/${matchedContractor.id}`, { replace: true })
+    navigate('/contractor/dashboard', { replace: true })
   }
 
   const resetTokenValidation = () => {

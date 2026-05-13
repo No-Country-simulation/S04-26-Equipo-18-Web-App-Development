@@ -1,14 +1,21 @@
-import { contractors } from '@/app/store'
 import OnboardingWizard from '../components/OnboardingWizard'
 import { ArrowRight } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
+import { useContractorsData } from '@/shared/hooks/useContractorsData'
 
 const OnboardingFlowPage = () => {
   const { contractorId } = useParams()
+  const { findById, isLoading, updateContractor } = useContractorsData()
 
-  const contractor = contractorId
-    ? contractors.find((item) => item.id === contractorId)
-    : contractors.find((item) => item.id === '3')
+  if (isLoading) {
+    return (
+      <section className="rounded-2xl border border-border bg-card p-8 text-center shadow-sm">
+        <p className="text-sm font-medium text-muted-foreground">Cargando onboarding...</p>
+      </section>
+    )
+  }
+
+  const contractor = contractorId ? findById(contractorId) : findById('3')
 
   if (!contractor) {
     return (
@@ -29,7 +36,14 @@ const OnboardingFlowPage = () => {
     )
   }
 
-  return <OnboardingWizard contractor={contractor} />
+  return (
+    <OnboardingWizard
+      contractor={contractor}
+      onContractorUpdate={async (updates) => {
+        await updateContractor(contractor.id, updates)
+      }}
+    />
+  )
 }
 
 export default OnboardingFlowPage

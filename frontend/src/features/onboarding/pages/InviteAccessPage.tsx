@@ -51,12 +51,6 @@ const InviteAccessPage = () => {
           Continue to contractor access
           <ArrowRight className="h-4 w-4" />
         </Link>
-        <Link
-          to="/onboarding/demo"
-          className="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 font-medium text-foreground hover:bg-muted"
-        >
-          Preview onboarding flow
-        </Link>
       </div>
     </section>
   )

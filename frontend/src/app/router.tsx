@@ -10,6 +10,8 @@ import InviteAccessPage from '@/features/onboarding/pages/InviteAccessPage'
 import OnboardingFlowPage from '@/features/onboarding/pages/OnboardingFlowPage'
 import AdminNotificationsPage from '@/features/admin/pages/AdminNotificationsPage'
 import AdminSettingsPage from '@/features/admin/pages/AdminSettingsPage'
+import ContractorDashboardPage from '@/features/contractor/pages/ContractorDashboardPage'
+import RequireContractorAuth from '@/features/contractor/components/RequireContractorAuth'
 
 const AppRouter = () => {
   return (
@@ -20,8 +22,10 @@ const AppRouter = () => {
           <Route path="/onboarding" element={<OnboardingHomePage />} />
           <Route path="/invite/:token" element={<InviteAccessPage />} />
           <Route path="/contractor/auth" element={<ContractorAuthPage />} />
-          <Route path="/onboarding/demo" element={<OnboardingFlowPage />} />
-          <Route path="/onboarding/:contractorId" element={<OnboardingFlowPage />} />
+          <Route path="/contractor/dashboard" element={<ContractorDashboardPage />} />
+          <Route element={<RequireContractorAuth />}>
+            <Route path="/onboarding/:contractorId" element={<OnboardingFlowPage />} />
+          </Route>
           <Route path="/auth/admin/login" element={<AdminAuthPage />} />
         </Route>
 
