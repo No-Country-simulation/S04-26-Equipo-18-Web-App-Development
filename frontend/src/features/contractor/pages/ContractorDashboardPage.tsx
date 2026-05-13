@@ -1,19 +1,9 @@
 import { useMemo } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { BadgeCheck, Clock3, FileText, LoaderCircle, ShieldX, UserRound, CircleAlert, ArrowRight } from 'lucide-react'
+import { FileText, UserRound, ArrowRight } from 'lucide-react'
 import { clearContractorSession, getContractorSession } from '../session'
-import type { ContractorStatus } from '@/shared/types'
 import { useContractorsData } from '@/shared/hooks/useContractorsData'
-
-const statusConfig: Record<ContractorStatus, { label: string; className: string; icon: React.ElementType }> = {
-  invited: { label: 'Invited', className: 'bg-muted text-muted-foreground', icon: Clock3 },
-  'in-progress': { label: 'In Progress', className: 'bg-primary/10 text-primary', icon: LoaderCircle },
-  'pending-review': { label: 'Pending Review', className: 'bg-warning/10 text-warning-foreground', icon: CircleAlert },
-  'corrections-needed': { label: 'Corrections Needed', className: 'bg-destructive/10 text-destructive', icon: ShieldX },
-  'pending-verification': { label: 'Pending Verification', className: 'bg-warning/10 text-warning-foreground', icon: Clock3 },
-  approved: { label: 'Approved', className: 'bg-success/10 text-success', icon: BadgeCheck },
-  rejected: { label: 'Rejected', className: 'bg-destructive/10 text-destructive', icon: ShieldX },
-}
+import { contractorStatusConfig } from '@/shared/config/contractorStatusConfig'
 
 const ContractorDashboardPage = () => {
   const navigate = useNavigate()
@@ -65,7 +55,7 @@ const ContractorDashboardPage = () => {
   const completedCount = contractor.completedSteps.length
   const totalSteps = 5
   const progress = Math.round((completedCount / totalSteps) * 100)
-  const status = statusConfig[contractor.status]
+  const status = contractorStatusConfig[contractor.status]
   const StatusIcon = status.icon
 
   const documentsPending = contractor.documents.filter((doc) => doc.status === 'pending').length
@@ -84,7 +74,7 @@ const ContractorDashboardPage = () => {
             <p className="mt-1 text-sm text-muted-foreground">{contractor.personalData.email}</p>
           </div>
 
-          <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium ${status.className}`}>
+          <div className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium ${status.color}`}>
             <StatusIcon className="h-4 w-4" />
             {status.label}
           </div>

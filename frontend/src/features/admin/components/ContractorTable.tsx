@@ -1,21 +1,12 @@
 import { useState } from "react";
 import {
-  Eye, MoreHorizontal, CheckCircle2, XCircle,
-  AlertTriangle, Clock, User, ChevronDown, Filter
+  Eye, MoreHorizontal, XCircle,
+  User, ChevronDown, Filter
 } from "lucide-react";
 import type { Contractor, ContractorStatus } from "@/shared/types";
 import { Link } from "react-router-dom";
 import { useContractorsData } from "@/shared/hooks/useContractorsData";
-
-const statusConfig: Record<ContractorStatus, { label: string; color: string; icon: React.ElementType }> = {
-  invited: { label: "Invited", color: "bg-muted text-muted-foreground", icon: Clock },
-  "in-progress": { label: "In Progress", color: "bg-primary/10 text-primary", icon: Clock },
-  "pending-review": { label: "Pending Review", color: "bg-warning/10 text-warning-foreground", icon: AlertTriangle },
-  "corrections-needed": { label: "Corrections Needed", color: "bg-destructive/10 text-destructive", icon: AlertTriangle },
-  "pending-verification": { label: "Pending Verification", color: "bg-warning/10 text-warning-foreground", icon: Clock },
-  approved: { label: "Approved", color: "bg-accent/10 text-accent", icon: CheckCircle2 },
-  rejected: { label: "Rejected", color: "bg-destructive/10 text-destructive", icon: XCircle },
-};
+import { contractorStatusConfig } from "@/shared/config/contractorStatusConfig";
 
 const statusFilters: ContractorStatus[] = [
   "in-progress",
@@ -67,7 +58,7 @@ export function ContractorTable() {
               onClick={() => setStatusFilter("all")}
               className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm"
             >
-              {statusConfig[statusFilter].label}
+              {contractorStatusConfig[statusFilter].label}
               <XCircle className="w-3 h-3" />
             </button>
           )}
@@ -100,7 +91,7 @@ export function ContractorTable() {
                   : "bg-background border border-border hover:bg-muted"
                   }`}
               >
-                {statusConfig[status].label}
+                {contractorStatusConfig[status].label}
               </button>
             ))}
           </div>
@@ -122,7 +113,7 @@ export function ContractorTable() {
           </thead>
           <tbody className="divide-y divide-border">
             {filteredContractors.map((contractor) => {
-              const status = statusConfig[contractor.status];
+              const status = contractorStatusConfig[contractor.status];
               const StatusIcon = status.icon;
               const progress = getProgress(contractor);
 
@@ -195,7 +186,7 @@ export function ContractorTable() {
           <p className="text-sm text-muted-foreground">
             {statusFilter === "all"
               ? "No contractors have been invited yet."
-              : `No contractors with status "${statusConfig[statusFilter].label}".`}
+              : `No contractors with status "${contractorStatusConfig[statusFilter].label}".`}
           </p>
         </div>
       )}

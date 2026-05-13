@@ -5,18 +5,9 @@ import {
     CreditCard, Building2, Globe, CheckCircle2, XCircle,
     Clock, ArrowLeft, MessageSquare
 } from "lucide-react";
-import type { Contractor, ContractorStatus, Document as ContractorDocument } from "@/shared/types";
+import type { Contractor, Document as ContractorDocument } from "@/shared/types";
 import { useNavigate } from "react-router-dom";
-
-const statusConfig: Record<ContractorStatus, { label: string; color: string }> = {
-    invited: { label: "Invited", color: "bg-muted text-muted-foreground" },
-    "in-progress": { label: "In Progress", color: "bg-primary/10 text-primary" },
-    "pending-review": { label: "Pending Review", color: "bg-warning/10 text-warning-foreground" },
-    "corrections-needed": { label: "Corrections Needed", color: "bg-destructive/10 text-destructive" },
-    "pending-verification": { label: "Pending Verification", color: "bg-warning/10 text-warning-foreground" },
-    approved: { label: "Approved", color: "text-success hover:bg-success-foreground/20" },
-    rejected: { label: "Rejected", color: "bg-destructive/10 text-destructive" },
-};
+import { contractorStatusConfig } from "@/shared/config/contractorStatusConfig";
 
 export function ContractorDetail({ contractor }: { contractor: Contractor }) {
 
@@ -28,7 +19,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
     const navigate = useNavigate();
 
 
-    const status = statusConfig[contractor.status ?? "invited"];
+    const status = contractorStatusConfig[contractor.status ?? "invited"];
 
 
     const handleApprove = () => {

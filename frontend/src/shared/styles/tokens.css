@@ -42,7 +42,7 @@
   --success: oklch(0.55 0.18 160);
   --success-foreground: oklch(0.99 0 0);
   --warning: oklch(0.75 0.15 80);
-  --warning-foreground: oklch(0.2 0.02 80);
+  --warning-foreground: oklch(100% 0.00011 271.152);
 }
 
 .dark {

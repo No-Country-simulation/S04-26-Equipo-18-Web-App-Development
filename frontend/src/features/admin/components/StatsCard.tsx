@@ -1,5 +1,6 @@
 import { Users, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
 import { useContractorsData } from "@/shared/hooks/useContractorsData";
+import { contractorStatusConfig } from "@/shared/config/contractorStatusConfig";
 
 export function StatsCards() {
     const { contractors, isLoading } = useContractorsData();
@@ -19,25 +20,25 @@ export function StatsCards() {
             label: "Total Contractors",
             value: contractors.length,
             icon: Users,
-            color: "bg-primary/10 text-primary",
+            color: contractorStatusConfig["invited"].color,
         },
         {
             label: "In Progress",
             value: contractors.filter((c) => c.status === "in-progress").length,
             icon: Clock,
-            color: "bg-warning/10 text-warning-foreground",
+            color: contractorStatusConfig["in-progress"].color,
         },
         {
             label: "Pending Verification",
             value: contractors.filter((c) => c.status === "pending-verification").length,
             icon: AlertTriangle,
-            color: "bg-warning/10 text-warning-foreground",
+            color: contractorStatusConfig["pending-verification"].color,
         },
         {
             label: "Approved",
             value: contractors.filter((c) => c.status === "approved").length,
             icon: CheckCircle2,
-            color: "bg-accent/10 text-accent",
+            color: contractorStatusConfig["approved"].color,
         },
     ];
 
