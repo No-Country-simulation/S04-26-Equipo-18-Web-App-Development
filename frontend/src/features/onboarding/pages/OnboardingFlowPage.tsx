@@ -15,7 +15,7 @@ const OnboardingFlowPage = () => {
     )
   }
 
-  const contractor = contractorId ? findById(contractorId) : findById('3')
+  const contractor = contractorId ? findById(contractorId) : null
 
   if (!contractor) {
     return (
