@@ -20,7 +20,7 @@ const ContractorDashboardPage = () => {
       contractors.find((item) => item.personalData.email.toLowerCase() === session.email?.toLowerCase()) ??
       null
     )
-  }, [session])
+  }, [session, contractors, session?.contractorId, session?.email])
 
   if (!session) {
     return <Navigate to="/contractor/auth" replace />
