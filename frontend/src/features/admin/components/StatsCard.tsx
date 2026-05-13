@@ -1,7 +1,18 @@
-import { contractors } from "@/app/store";
 import { Users, Clock, CheckCircle2, AlertTriangle } from "lucide-react";
+import { useContractorsData } from "@/shared/hooks/useContractorsData";
 
 export function StatsCards() {
+    const { contractors, isLoading } = useContractorsData();
+
+    if (isLoading) {
+        return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="bg-card border border-border rounded-xl p-5">
+                    <p className="text-sm text-muted-foreground">Loading stats...</p>
+                </div>
+            </div>
+        )
+    }
 
     const stats = [
         {

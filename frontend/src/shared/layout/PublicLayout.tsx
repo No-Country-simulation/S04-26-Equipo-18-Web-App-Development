@@ -7,7 +7,7 @@ const PublicLayout = () => {
         <div className="bg-slate-50 text-slate-900">
             <Header />
 
-            <main className="min-h-screen mx-auto w-full max-w-6xl px-4 py-8">
+            <main className="min-h-screen mx-auto w-full max-w-6xl px-4">
                 <Outlet />
             </main>
 

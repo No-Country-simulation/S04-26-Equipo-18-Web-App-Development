@@ -5,7 +5,7 @@ import {
     CreditCard, Building2, Globe, CheckCircle2, XCircle,
     Clock, ArrowLeft, MessageSquare
 } from "lucide-react";
-import type { Contractor, ContractorStatus } from "@/shared/types";
+import type { Contractor, ContractorStatus, Document as ContractorDocument } from "@/shared/types";
 import { useNavigate } from "react-router-dom";
 
 const statusConfig: Record<ContractorStatus, { label: string; color: string }> = {
@@ -14,7 +14,7 @@ const statusConfig: Record<ContractorStatus, { label: string; color: string }> =
     "pending-review": { label: "Pending Review", color: "bg-warning/10 text-warning-foreground" },
     "corrections-needed": { label: "Corrections Needed", color: "bg-destructive/10 text-destructive" },
     "pending-verification": { label: "Pending Verification", color: "bg-warning/10 text-warning-foreground" },
-    approved: { label: "Approved", color: "bg-accent/10 text-accent" },
+    approved: { label: "Approved", color: "text-success hover:bg-success-foreground/20" },
     rejected: { label: "Rejected", color: "bg-destructive/10 text-destructive" },
 };
 
@@ -22,7 +22,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
 
     const [showRejectModal, setShowRejectModal] = useState(false);
     const [showCorrectionModal, setShowCorrectionModal] = useState(false);
-    const [showDocRejectModal, setShowDocRejectModal] = useState<Document | null>(null);
+    const [showDocRejectModal, setShowDocRejectModal] = useState<ContractorDocument | null>(null);
     const [notes, setNotes] = useState("");
 
     const navigate = useNavigate();
@@ -33,24 +33,25 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
 
     const handleApprove = () => {
         // approveContractor(contractor.id);
-        navigate("/admin/contractors");
+        // navigate("/admin/contractors");
+        alert("Contractor approved! (This is a placeholder action)");
     };
 
     const handleReject = () => {
         // rejectContractor(contractor.id, notes);
         setShowRejectModal(false);
-        navigate("/admin/contractors");
+        navigate("/admin");
     };
 
     const handleRequestCorrections = () => {
         // requestCorrections(contractor.id, notes);
         setShowCorrectionModal(false);
-        navigate("/admin/contractors");
+        alert("Corrections requested! (This is a placeholder action)");
     };
 
     const handleApproveDoc = () => {
         // approveDocument(contractor.id, docId);
-        navigate("/admin/contractors");
+        alert("Document approved! (This is a placeholder action)");
     };
 
     const handleRejectDoc = () => {
@@ -58,7 +59,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
             // rejectDocument(contractor.id, showDocRejectModal.id, notes);
             setShowDocRejectModal(null);
             setNotes("");
-            navigate("/admin/contractors");
+            alert("Document rejected! (This is a placeholder action)");
         }
     };
 
@@ -112,7 +113,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                         </button>
                         <button
                             onClick={handleApprove}
-                            className="px-4 py-2 bg-accent text-accent-foreground rounded-lg hover:bg-accent/90 transition-colors"
+                            className="px-4 py-2 bg-success text-success-foreground rounded-lg hover:bg-success/90 transition-colors"
                         >
                             Approve
                         </button>
@@ -229,13 +230,13 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                                             <>
                                                 <button
                                                     onClick={() => handleApproveDoc()}
-                                                    className="p-1.5 rounded-lg bg-accent/10 text-accent hover:bg-accent/20 transition-colors"
+                                                    className="p-1.5 rounded-lg bg-accent/10 text-success hover:bg-success-foreground/20 transition-colors"
                                                     title="Approve"
                                                 >
                                                     <CheckCircle2 className="w-4 h-4" />
                                                 </button>
                                                 <button
-                                                    onClick={() => setShowDocRejectModal(null)}
+                                                    onClick={() => setShowDocRejectModal(doc)}
                                                     className="p-1.5 rounded-lg bg-destructive/10 text-destructive hover:bg-destructive/20 transition-colors"
                                                     title="Reject"
                                                 >
@@ -320,7 +321,7 @@ export function ContractorDetail({ contractor }: { contractor: Contractor }) {
                         <p className="text-sm text-muted-foreground mb-4">
                             {showRejectModal && "Please provide a reason for rejecting this application."}
                             {showCorrectionModal && "Describe what corrections are needed."}
-                            {showDocRejectModal && `Provide a reason for rejecting "${"Prueba"}".`}
+                            {showDocRejectModal && `Provide a reason for rejecting "${showDocRejectModal.name}".`}
                         </p>
                         <textarea
                             value={notes}
