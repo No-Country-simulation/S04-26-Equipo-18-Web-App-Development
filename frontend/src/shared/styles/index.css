@@ -11,6 +11,8 @@
 @import "./theme.css";
 /* 3) base: estilos globales y reglas de reset */
 @import "./base.css";
+/* 4) motion: animaciones sutiles compartidas */
+@import "./motion.css";
 
 /* Dark mode basado en clase: agregar .dark al <html> para activarlo */
 @custom-variant dark (&:is(.dark *));

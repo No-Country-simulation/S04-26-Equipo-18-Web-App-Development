@@ -101,18 +101,24 @@ export function AdminAuthPage() {
     };
 
     return (
-        <div className="flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
-                {/* Logo and Header */}
-                <div className="text-center mb-8">
-                    <h1 className="text-2xl font-bold text-foreground">NorthPay Admin</h1>
-                    <p className="text-muted-foreground mt-2">
-                        Portal de gestión de onboarding de contratistas
+        <section className="bg-brand-dark px-4 py-12 text-white md:px-8 md:py-20">
+            <div className="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+                <div className="np-reveal space-y-5">
+                    <p className="inline-flex rounded-sm border border-brand-dark-soft bg-brand-dark-soft px-3 py-2 text-[11px] uppercase tracking-[0.12em]">
+                        Acceso de administracion
+                    </p>
+                    <h1 className="max-w-xl text-3xl font-medium tracking-[-0.03em] md:text-5xl">
+                        Gestiona el onboarding de punta a punta
+                    </h1>
+                    <p className="max-w-xl text-[16px] leading-7 text-white/75">
+                        Inicia sesion como admin para supervisar estados, validaciones y activaciones de contratistas.
                     </p>
                 </div>
 
+                <div className="np-reveal np-delay-1 w-full max-w-md lg:justify-self-end">
+
                 {/* Auth Card */}
-                <Card className="border-border/50 shadow-lg">
+                <Card className="border-brand-border bg-white text-black shadow-none">
                     <CardHeader className="pb-4">
                         <Tabs
                             value={activeTab}
@@ -129,15 +135,15 @@ export function AdminAuthPage() {
                             </TabsList>
 
                             <TabsContent value="login" className="mt-6">
-                                <CardTitle className="text-xl">Bienvenido nuevamente</CardTitle>
-                                <CardDescription className="mt-1">
+                                <CardTitle className="text-xl text-black">Bienvenido nuevamente</CardTitle>
+                                <CardDescription className="mt-1 text-brand-muted">
                                     Ingresá tus credenciales para acceder al portal de administración
                                 </CardDescription>
                             </TabsContent>
 
                             <TabsContent value="register" className="mt-6">
-                                <CardTitle className="text-xl">Crear una cuenta</CardTitle>
-                                <CardDescription className="mt-1">
+                                <CardTitle className="text-xl text-black">Crear una cuenta</CardTitle>
+                                <CardDescription className="mt-1 text-brand-muted">
                                     Registrate para comenzar a gestionar el onboarding de contratistas
                                 </CardDescription>
                             </TabsContent>
@@ -153,9 +159,9 @@ export function AdminAuthPage() {
                         )}
 
                         {success && (
-                            <Alert className="mb-4 border-accent bg-accent/10">
-                                <CheckCircle2 className="h-4 w-4 text-accent" />
-                                <AlertDescription className="text-accent">
+                            <Alert className="mb-4 border-brand-border bg-brand-surface-soft">
+                                <CheckCircle2 className="h-4 w-4 text-black" />
+                                <AlertDescription className="text-black">
                                     {success}
                                 </AlertDescription>
                             </Alert>
@@ -195,11 +201,7 @@ export function AdminAuthPage() {
                                     </div>
                                 </div>
 
-                                <Button
-                                    type="submit"
-                                    className="w-full"
-                                    disabled={isLoading}
-                                >
+                                <Button type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
                                         <span className="flex items-center gap-2">
                                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -213,7 +215,7 @@ export function AdminAuthPage() {
                                     )}
                                 </Button>
 
-                                <div className="mt-4 p-3 rounded-lg bg-muted/50 text-sm">
+                                <div className="mt-4 rounded-sm border border-brand-border bg-brand-surface-soft p-3 text-sm">
                                     <p className="font-medium text-foreground mb-1">Credenciales demo:</p>
                                     <p className="text-muted-foreground">
                                         Correo electrónico: <span className="text-foreground">admin@northpay.com</span>
@@ -291,11 +293,7 @@ export function AdminAuthPage() {
                                     </div>
                                 </div>
 
-                                <Button
-                                    type="submit"
-                                    className="w-full"
-                                    disabled={isLoading}
-                                >
+                                <Button type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
                                         <span className="flex items-center gap-2">
                                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -313,12 +311,12 @@ export function AdminAuthPage() {
                     </CardContent>
                 </Card>
 
-                {/* Footer */}
-                <p className="text-center text-sm text-muted-foreground mt-6">
-                    Al continuar, aceptás los Términos del servicio y la Política de privacidad de NorthPay
+                <p className="mt-6 text-center text-sm text-white/70">
+                    Al continuar, aceptas los terminos del servicio y la politica de privacidad de NorthPay.
                 </p>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
 export default AdminAuthPage;

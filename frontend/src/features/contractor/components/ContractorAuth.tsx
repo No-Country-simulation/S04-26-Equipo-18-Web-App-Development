@@ -167,11 +167,11 @@ const ContractorAuth = () => {
   }
 
   return (
-    <Card className="border-border shadow-lg">
+    <Card className="np-hover-lift border-brand-border bg-white shadow-none">
       <CardHeader className="pb-2 text-center">
-        <CardTitle className="text-2xl font-bold text-foreground">Acceso de contratistas</CardTitle>
-        <CardDescription className="text-muted-foreground">
-          Registrate con tu token de invitación o iniciá sesión para continuar tu onboarding
+        <CardTitle className="text-2xl font-medium tracking-[-0.02em] text-black">Acceso de contratistas</CardTitle>
+        <CardDescription className="text-brand-muted">
+          Registrate con tu token de invitacion o inicia sesion para continuar tu onboarding.
         </CardDescription>
       </CardHeader>
 
@@ -184,9 +184,9 @@ const ContractorAuth = () => {
         )}
 
         {success && (
-          <Alert className="mb-4 border-accent bg-accent/10">
-            <CheckCircle2 className="h-4 w-4 text-accent-foreground" />
-            <AlertDescription className="text-accent-foreground">{success}</AlertDescription>
+          <Alert className="mb-4 border-brand-border bg-brand-surface-soft">
+            <CheckCircle2 className="h-4 w-4 text-black" />
+            <AlertDescription className="text-black">{success}</AlertDescription>
           </Alert>
         )}
 
@@ -198,12 +198,18 @@ const ContractorAuth = () => {
             setSuccess('')
           }}
         >
-          <TabsList className="mb-6 grid w-full grid-cols-2">
-            <TabsTrigger value="register" className="gap-2">
+          <TabsList className="mb-6 grid w-full grid-cols-2 rounded-sm bg-brand-border p-1">
+            <TabsTrigger
+              value="register"
+              className="gap-2 rounded-sm text-[11px] font-medium uppercase tracking-[0.08em] data-[state=active]:bg-white data-[state=active]:text-black"
+            >
               <Ticket className="h-4 w-4" />
               Registrarse
             </TabsTrigger>
-            <TabsTrigger value="login" className="gap-2">
+            <TabsTrigger
+              value="login"
+              className="gap-2 rounded-sm text-[11px] font-medium uppercase tracking-[0.08em] data-[state=active]:bg-white data-[state=active]:text-black"
+            >
               <Lock className="h-4 w-4" />
               Iniciar sesión
             </TabsTrigger>
@@ -212,15 +218,15 @@ const ContractorAuth = () => {
           <TabsContent value="register" className="mt-0">
             {!tokenValidated ? (
               <div className="space-y-4">
-                <div className="mb-4 rounded-lg bg-muted p-4 text-center">
-                  <Ticket className="mx-auto mb-2 h-8 w-8 text-primary" />
-                  <p className="text-sm text-muted-foreground">
-                    Ingresá el token de invitación que recibiste de NorthPay para crear tu cuenta
+                <div className="mb-4 rounded-sm border border-brand-border bg-brand-surface-soft-alt p-4 text-center">
+                  <Ticket className="mx-auto mb-2 h-8 w-8 text-black" />
+                  <p className="text-sm text-brand-muted">
+                    Ingresa el token de invitacion que recibiste de NorthPay para crear tu cuenta.
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="token" className="text-foreground">
+                  <Label htmlFor="token" className="text-black">
                     Token de invitación
                   </Label>
                   <Input
@@ -234,7 +240,11 @@ const ContractorAuth = () => {
                   />
                 </div>
 
-                <Button onClick={handleValidateToken} disabled={!token.trim() || isLoading} className="w-full gap-2">
+                <Button
+                  onClick={handleValidateToken}
+                  disabled={!token.trim() || isLoading}
+                  className="w-full gap-2 rounded-sm bg-black text-[12px] font-medium uppercase tracking-[0.08em] text-white hover:bg-[#141414]"
+                >
                   {isLoading ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
@@ -249,7 +259,7 @@ const ContractorAuth = () => {
                 </Button>
 
                 <div className="pt-2 text-center">
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-brand-muted">
                     Tokens demo: <span className="font-mono">NORTH-2024-ABC123</span> o{' '}
                     <span className="font-mono">NORTH-2024-DEF456</span>
                   </p>
@@ -257,11 +267,11 @@ const ContractorAuth = () => {
               </div>
             ) : (
               <form onSubmit={handleRegister} className="space-y-4">
-                <div className="mb-4 flex items-center gap-3 rounded-lg border border-accent/20 bg-accent/10 p-3">
+                <div className="mb-4 flex items-center gap-3 rounded-sm border border-brand-border bg-brand-surface-soft p-3">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-green-500" />
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-accent-foreground">Token validado</p>
-                    <p className="truncate font-mono text-xs text-muted-foreground">{token}</p>
+                    <p className="text-sm font-medium text-black">Token validado</p>
+                    <p className="truncate font-mono text-xs text-brand-muted">{token}</p>
                   </div>
                   <Button type="button" variant="ghost" size="sm" onClick={resetTokenValidation} className="text-xs">
                     Cambiar
@@ -269,11 +279,11 @@ const ContractorAuth = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="register-email" className="text-foreground">
+                  <Label htmlFor="register-email" className="text-black">
                     Correo electrónico
                   </Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted" />
                     <Input
                       id="register-email"
                       type="email"
@@ -293,11 +303,11 @@ const ContractorAuth = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="register-password" className="text-foreground">
+                  <Label htmlFor="register-password" className="text-black">
                     Contraseña
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted" />
                     <Input
                       id="register-password"
                       type={showRegisterPassword ? 'text' : 'password'}
@@ -312,7 +322,7 @@ const ContractorAuth = () => {
                     <button
                       type="button"
                       onClick={() => setShowRegisterPassword(!showRegisterPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-muted hover:text-black"
                     >
                       {showRegisterPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -320,11 +330,11 @@ const ContractorAuth = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="confirm-password" className="text-foreground">
+                  <Label htmlFor="confirm-password" className="text-black">
                     Confirmar contraseña
                   </Label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                    <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted" />
                     <Input
                       id="confirm-password"
                       type={showConfirmPassword ? 'text' : 'password'}
@@ -338,7 +348,7 @@ const ContractorAuth = () => {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-muted hover:text-black"
                     >
                       {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -351,7 +361,7 @@ const ContractorAuth = () => {
                 <Button
                   type="submit"
                   disabled={isLoading || !registerEmail || !registerPassword || registerPassword !== confirmPassword}
-                  className="w-full gap-2"
+                  className="w-full gap-2 rounded-sm bg-black text-[12px] font-medium uppercase tracking-[0.08em] text-white hover:bg-[#141414]"
                 >
                   {isLoading ? (
                     <>
@@ -371,17 +381,17 @@ const ContractorAuth = () => {
 
           <TabsContent value="login" className="mt-0">
             <form onSubmit={handleLogin} className="space-y-4">
-              <div className="mb-4 rounded-lg bg-muted p-4 text-center">
-                <Lock className="mx-auto mb-2 h-8 w-8 text-primary" />
-                <p className="text-sm text-muted-foreground">Iniciá sesión para continuar tu proceso de onboarding</p>
+              <div className="mb-4 rounded-sm border border-brand-border bg-brand-surface-soft-alt p-4 text-center">
+                <Lock className="mx-auto mb-2 h-8 w-8 text-black" />
+                <p className="text-sm text-brand-muted">Inicia sesion para continuar tu proceso de onboarding.</p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="login-email" className="text-foreground">
+                <Label htmlFor="login-email" className="text-black">
                   Correo electrónico
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted" />
                   <Input
                     id="login-email"
                     type="email"
@@ -396,11 +406,11 @@ const ContractorAuth = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="login-password" className="text-foreground">
+                <Label htmlFor="login-password" className="text-black">
                   Contraseña
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted" />
                   <Input
                     id="login-password"
                     type={showLoginPassword ? 'text' : 'password'}
@@ -414,14 +424,18 @@ const ContractorAuth = () => {
                   <button
                     type="button"
                     onClick={() => setShowLoginPassword(!showLoginPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-muted hover:text-black"
                   >
                     {showLoginPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
               </div>
 
-              <Button type="submit" disabled={isLoading || !loginEmail || !loginPassword} className="w-full gap-2">
+              <Button
+                type="submit"
+                disabled={isLoading || !loginEmail || !loginPassword}
+                className="w-full gap-2 rounded-sm bg-black text-[12px] font-medium uppercase tracking-[0.08em] text-white hover:bg-[#141414]"
+              >
                 {isLoading ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -436,13 +450,13 @@ const ContractorAuth = () => {
               </Button>
 
               <div className="pt-2 text-center">
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-brand-muted">
                   Demo: <span className="font-mono">ana.silva@email.com</span> /{' '}
                   <span className="font-mono">ana123</span>
                 </p>
-                <p className="mt-2 text-xs text-muted-foreground">
+                <p className="mt-2 text-xs text-brand-muted">
                   ¿Necesitás una invitación?{' '}
-                  <Link to="/invite/NORTH-2024-ABC123" className="text-primary hover:underline">
+                  <Link to="/invite/NORTH-2024-ABC123" className="text-black underline underline-offset-4">
                     Usar invitación de ejemplo
                   </Link>
                 </p>

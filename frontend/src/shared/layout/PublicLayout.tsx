@@ -1,27 +1,36 @@
 import { Outlet } from 'react-router-dom'
 import Header from '../components/Header'
-import { Zap } from 'lucide-react'
 
 const PublicLayout = () => {
     return (
-        <div className="bg-slate-50 text-slate-900">
+        <div className="bg-white text-black">
             <Header />
 
-            <main className="min-h-screen mx-auto w-full px-4 md:px-0">
+            <main className="min-h-screen w-full">
                 <Outlet />
             </main>
 
-            {/* Footer */}
-            <footer className="border-t border-border py-8 px-4">
-                <div className="mx-auto flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                            <Zap className="w-4 h-4 text-primary-foreground" />
-                        </div>
-                        <span className="font-medium text-foreground">NorthPay</span>
+            <footer className="border-t border-brand-border bg-white px-4 pt-14 md:px-8 md:pt-20">
+                <div className="mx-auto grid w-full max-w-7xl gap-8 pb-12 md:grid-cols-2 md:items-start md:pb-16">
+                    <div className="space-y-4">
+                        <p className="text-[11px] uppercase tracking-[0.12em] text-brand-muted">
+                            Plataforma NorthPay
+                        </p>
+                        <p className="max-w-md text-[15px] leading-6 text-black">
+                            Onboarding, compliance y pagos internacionales para contratistas en una sola operacion.
+                        </p>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                        Demo de plataforma de onboarding de contratistas
+
+                    <div className="grid gap-3 text-[13px] uppercase tracking-[0.08em] text-brand-muted md:justify-items-end">
+                        <p>Onboarding en menos de 72h</p>
+                        <p>Firma y documentacion digital</p>
+                        <p>Pagos globales sin friccion</p>
+                    </div>
+                </div>
+
+                <div className="mx-auto w-full max-w-7xl overflow-hidden border-t border-brand-border py-6 md:py-8">
+                    <p className="text-[58px] font-medium leading-[0.95] tracking-[-0.04em] text-brand-muted-soft md:text-[112px]">
+                        northpay
                     </p>
                 </div>
             </footer>

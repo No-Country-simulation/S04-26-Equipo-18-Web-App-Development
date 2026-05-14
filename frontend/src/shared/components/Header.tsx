@@ -2,21 +2,24 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b border-border">
-            <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-                <img src='/northpay_nobackground_2x1.png' className="h-12" />
-                <div className="flex items-center gap-3">
+        <header className="sticky top-0 z-30 border-b border-white/12 bg-brand-white/80 backdrop-blur-md">
+            <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 md:px-8">
+                <Link to="/" className="flex items-center">
+                    <img src='/northpay_nobackground_2x1.png' className="h-10 md:h-11" alt="NorthPay" />
+                </Link>
+
+                <div className="flex items-center gap-2 md:gap-3">
                     <Link
                         to="/auth/admin/login"
-                        className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        className="rounded-sm border border-brand-dark-soft bg-brand-dark-soft px-3 py-2 text-[11px] font-medium uppercase tracking-[0.08em] text-white transition-colors hover:bg-brand-dark-soft-hover md:px-4"
                     >
-                        Portal de administración
+                        Admin
                     </Link>
                     <Link
                         to="/invite/NORTH-2024-ABC123"
-                        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+                        className="rounded-sm bg-white px-3 py-2 text-[11px] font-medium uppercase tracking-[0.08em] text-black transition-colors hover:bg-brand-mint md:px-4"
                     >
-                        Iniciar onboarding
+                        Iniciar Onboarding
                     </Link>
                 </div>
             </div>

@@ -43,6 +43,24 @@
   --success-foreground: oklch(0.99 0 0);
   --warning: oklch(0.75 0.15 80);
   --warning-foreground: oklch(100% 0.00011 271.152);
+
+  /* NorthPay brand palette (editable) */
+  --brand-dark: #010120;
+  --brand-dark-soft: #313641;
+  --brand-dark-soft-hover: #3f4552;
+  --brand-dark-card: #141530;
+  --brand-dark-panel: #1b1d39;
+  --brand-border: #ebebeb;
+  --brand-muted: #959494;
+  --brand-muted-soft: #d7d7d7;
+  --brand-surface-soft: #f6f6f6;
+  --brand-surface-soft-alt: #f7f7f7;
+  --brand-mint: #c8f6f9;
+  --brand-peach: #f6d4bf;
+  --brand-periwinkle: #d9d8ff;
+  --brand-gradient-start: #fc4c02;
+  --brand-gradient-mid: #ef2cc1;
+  --brand-gradient-end: #bdbbff;
 }
 
 .dark {
@@ -82,4 +100,22 @@
   --success-foreground: oklch(0.99 0 0);
   --warning: oklch(0.75 0.15 80);
   --warning-foreground: oklch(0.2 0.02 80);
+
+  /* Keep consistent brand identity in dark mode */
+  --brand-dark: #010120;
+  --brand-dark-soft: #313641;
+  --brand-dark-soft-hover: #3f4552;
+  --brand-dark-card: #141530;
+  --brand-dark-panel: #1b1d39;
+  --brand-border: #ebebeb;
+  --brand-muted: #959494;
+  --brand-muted-soft: #d7d7d7;
+  --brand-surface-soft: #f6f6f6;
+  --brand-surface-soft-alt: #f7f7f7;
+  --brand-mint: #c8f6f9;
+  --brand-peach: #f6d4bf;
+  --brand-periwinkle: #d9d8ff;
+  --brand-gradient-start: #fc4c02;
+  --brand-gradient-mid: #ef2cc1;
+  --brand-gradient-end: #bdbbff;
 }

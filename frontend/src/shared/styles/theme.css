@@ -46,6 +46,23 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-dark-soft: var(--brand-dark-soft);
+  --color-brand-dark-soft-hover: var(--brand-dark-soft-hover);
+  --color-brand-dark-card: var(--brand-dark-card);
+  --color-brand-dark-panel: var(--brand-dark-panel);
+  --color-brand-border: var(--brand-border);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-muted-soft: var(--brand-muted-soft);
+  --color-brand-surface-soft: var(--brand-surface-soft);
+  --color-brand-surface-soft-alt: var(--brand-surface-soft-alt);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-peach: var(--brand-peach);
+  --color-brand-periwinkle: var(--brand-periwinkle);
+  --color-brand-gradient-start: var(--brand-gradient-start);
+  --color-brand-gradient-mid: var(--brand-gradient-mid);
+  --color-brand-gradient-end: var(--brand-gradient-end);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
