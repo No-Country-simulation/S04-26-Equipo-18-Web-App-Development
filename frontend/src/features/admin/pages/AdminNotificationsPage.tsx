@@ -6,31 +6,31 @@ type NotificationType = 'warning' | 'info' | 'success' | 'alert'
 const notifications = [
   {
     id: '1',
-    title: 'Document rejected for James Wilson',
-    message: 'Proof of address was rejected due to low image quality.',
+    title: 'Documento rechazado de James Wilson',
+    message: 'El comprobante de domicilio fue rechazado por baja calidad de imagen.',
     type: 'warning',
-    time: '5 min ago',
+    time: 'Hace 5 min',
   },
   {
     id: '2',
-    title: 'New contractor invited',
-    message: 'Ana Silva started onboarding from invitation token.',
+    title: 'Nuevo contratista invitado',
+    message: 'Ana Silva inició el onboarding desde el token de invitación.',
     type: 'info',
-    time: '18 min ago',
+    time: 'Hace 18 min',
   },
   {
     id: '3',
-    title: 'Contract approved',
-    message: 'Carlos Mendez completed all onboarding steps successfully.',
+    title: 'Contrato aprobado',
+    message: 'Carlos Méndez completó correctamente todas las etapas del onboarding.',
     type: 'success',
-    time: '1 hour ago',
+    time: 'Hace 1 hora',
   },
   {
     id: '4',
-    title: 'Pending verification queue updated',
-    message: 'There are 2 contractors waiting for manual review.',
+    title: 'Cola de verificación actualizada',
+    message: 'Hay 2 contratistas en espera de revisión manual.',
     type: 'alert',
-    time: '2 hours ago',
+    time: 'Hace 2 horas',
   },
 ] as const satisfies ReadonlyArray<{
   id: string
@@ -66,12 +66,12 @@ const typeStyles = {
 const AdminNotificationsPage = () => {
   return (
     <section className="space-y-4">
-      <AdminHeader title="Notifications" subtitle="Track key onboarding events and status changes" unreadCount={4} />
+      <AdminHeader title="Notificaciones" subtitle="Seguimiento de eventos clave y cambios de estado del onboarding" unreadCount={4} />
 
       <div className="space-y-4 p-6">
         <article className="rounded-xl border border-border bg-card p-4">
           <p className="text-sm text-muted-foreground">
-            This notification center is visually ready for websocket/API wiring. Items, badges and timestamps are mapped for real events.
+            Este centro de notificaciones está listo para integrarse con WebSocket/API. Ítems, etiquetas y marcas de tiempo están preparados para eventos reales.
           </p>
         </article>
 
@@ -98,7 +98,13 @@ const AdminNotificationsPage = () => {
 
                   <div className="flex shrink-0 items-center gap-2">
                     <span className={`rounded-full px-2 py-1 text-xs font-medium ${style.badgeClass}`}>
-                      {notification.type}
+                      {notification.type === 'warning'
+                        ? 'Advertencia'
+                        : notification.type === 'info'
+                          ? 'Información'
+                          : notification.type === 'success'
+                            ? 'Éxito'
+                            : 'Alerta'}
                     </span>
                     <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                       <Clock3 className="h-3 w-3" />

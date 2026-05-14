@@ -68,7 +68,7 @@ export function AdminAuthPage() {
             loginPassword === DEMO_ADMIN_PASSWORD;
 
         if (!isValidDemoUser) {
-            setError("Invalid credentials. Use the demo admin account.");
+            setError("Credenciales inválidas. Usá la cuenta demo de administración.");
             setIsLoading(false);
             return;
         }
@@ -83,7 +83,7 @@ export function AdminAuthPage() {
         setSuccess(null);
 
         if (registerPassword !== registerConfirmPassword) {
-            setError("Passwords do not match");
+            setError("Las contraseñas no coinciden");
             return;
         }
 
@@ -91,7 +91,7 @@ export function AdminAuthPage() {
         await new Promise((resolve) => setTimeout(resolve, 800));
 
         window.localStorage.setItem(ADMIN_SESSION_KEY, "authenticated");
-        setSuccess(`Account created for ${registerName || registerEmail}. Redirecting...`);
+        setSuccess(`Cuenta creada para ${registerName || registerEmail}. Redirigiendo...`);
 
         window.setTimeout(() => {
             navigate("/admin", { replace: true });
@@ -107,7 +107,7 @@ export function AdminAuthPage() {
                 <div className="text-center mb-8">
                     <h1 className="text-2xl font-bold text-foreground">NorthPay Admin</h1>
                     <p className="text-muted-foreground mt-2">
-                        Contractor Onboarding Management Portal
+                        Portal de gestión de onboarding de contratistas
                     </p>
                 </div>
 
@@ -124,21 +124,21 @@ export function AdminAuthPage() {
                             className="w-full"
                         >
                             <TabsList className="grid w-full grid-cols-2">
-                                <TabsTrigger value="login">Sign In</TabsTrigger>
-                                <TabsTrigger value="register">Create Account</TabsTrigger>
+                                <TabsTrigger value="login">Iniciar sesión</TabsTrigger>
+                                <TabsTrigger value="register">Crear cuenta</TabsTrigger>
                             </TabsList>
 
                             <TabsContent value="login" className="mt-6">
-                                <CardTitle className="text-xl">Welcome back</CardTitle>
+                                <CardTitle className="text-xl">Bienvenido nuevamente</CardTitle>
                                 <CardDescription className="mt-1">
-                                    Enter your credentials to access the admin portal
+                                    Ingresá tus credenciales para acceder al portal de administración
                                 </CardDescription>
                             </TabsContent>
 
                             <TabsContent value="register" className="mt-6">
-                                <CardTitle className="text-xl">Create an account</CardTitle>
+                                <CardTitle className="text-xl">Crear una cuenta</CardTitle>
                                 <CardDescription className="mt-1">
-                                    Register to start managing contractor onboarding
+                                    Registrate para comenzar a gestionar el onboarding de contratistas
                                 </CardDescription>
                             </TabsContent>
                         </Tabs>
@@ -164,7 +164,7 @@ export function AdminAuthPage() {
                         {activeTab === "login" ? (
                             <form onSubmit={handleLogin} className="space-y-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="login-email">Email</Label>
+                                    <Label htmlFor="login-email">Correo electrónico</Label>
                                     <div className="relative">
                                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
@@ -180,13 +180,13 @@ export function AdminAuthPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="login-password">Password</Label>
+                                    <Label htmlFor="login-password">Contraseña</Label>
                                     <div className="relative">
                                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
                                             id="login-password"
                                             type="password"
-                                            placeholder="Enter your password"
+                                            placeholder="Ingresá tu contraseña"
                                             value={loginPassword}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLoginPassword(e.target.value)}
                                             className="pl-10"
@@ -203,36 +203,36 @@ export function AdminAuthPage() {
                                     {isLoading ? (
                                         <span className="flex items-center gap-2">
                                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                                            Signing in...
+                                            Iniciando sesión...
                                         </span>
                                     ) : (
                                         <span className="flex items-center gap-2">
-                                            Sign In
+                                            Iniciar sesión
                                             <ArrowRight className="h-4 w-4" />
                                         </span>
                                     )}
                                 </Button>
 
                                 <div className="mt-4 p-3 rounded-lg bg-muted/50 text-sm">
-                                    <p className="font-medium text-foreground mb-1">Demo credentials:</p>
+                                    <p className="font-medium text-foreground mb-1">Credenciales demo:</p>
                                     <p className="text-muted-foreground">
-                                        Email: <span className="text-foreground">admin@northpay.com</span>
+                                        Correo electrónico: <span className="text-foreground">admin@northpay.com</span>
                                     </p>
                                     <p className="text-muted-foreground">
-                                        Password: <span className="text-foreground">admin123</span>
+                                        Contraseña: <span className="text-foreground">admin123</span>
                                     </p>
                                 </div>
                             </form>
                         ) : (
                             <form onSubmit={handleRegister} className="space-y-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="register-name">Full Name</Label>
+                                    <Label htmlFor="register-name">Nombre completo</Label>
                                     <div className="relative">
                                         <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
                                             id="register-name"
                                             type="text"
-                                            placeholder="John Doe"
+                                            placeholder="Juan Pérez"
                                             value={registerName}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRegisterName(e.target.value)}
                                             className="pl-10"
@@ -242,13 +242,13 @@ export function AdminAuthPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="register-email">Email</Label>
+                                    <Label htmlFor="register-email">Correo electrónico</Label>
                                     <div className="relative">
                                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
                                             id="register-email"
                                             type="email"
-                                            placeholder="you@company.com"
+                                            placeholder="tu@empresa.com"
                                             value={registerEmail}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRegisterEmail(e.target.value)}
                                             className="pl-10"
@@ -258,13 +258,13 @@ export function AdminAuthPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="register-password">Password</Label>
+                                    <Label htmlFor="register-password">Contraseña</Label>
                                     <div className="relative">
                                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
                                             id="register-password"
                                             type="password"
-                                            placeholder="At least 6 characters"
+                                            placeholder="Al menos 6 caracteres"
                                             value={registerPassword}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRegisterPassword(e.target.value)}
                                             className="pl-10"
@@ -275,13 +275,13 @@ export function AdminAuthPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="register-confirm">Confirm Password</Label>
+                                    <Label htmlFor="register-confirm">Confirmar contraseña</Label>
                                     <div className="relative">
                                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
                                             id="register-confirm"
                                             type="password"
-                                            placeholder="Repeat your password"
+                                            placeholder="Repetí tu contraseña"
                                             value={registerConfirmPassword}
                                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRegisterConfirmPassword(e.target.value)}
                                             className="pl-10"
@@ -299,11 +299,11 @@ export function AdminAuthPage() {
                                     {isLoading ? (
                                         <span className="flex items-center gap-2">
                                             <span className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                                            Creating account...
+                                            Creando cuenta...
                                         </span>
                                     ) : (
                                         <span className="flex items-center gap-2">
-                                            Create Account
+                                            Crear cuenta
                                             <ArrowRight className="h-4 w-4" />
                                         </span>
                                     )}
@@ -315,7 +315,7 @@ export function AdminAuthPage() {
 
                 {/* Footer */}
                 <p className="text-center text-sm text-muted-foreground mt-6">
-                    By continuing, you agree to NorthPay&apos;s Terms of Service and Privacy Policy
+                    Al continuar, aceptás los Términos del servicio y la Política de privacidad de NorthPay
                 </p>
             </div>
         </div>

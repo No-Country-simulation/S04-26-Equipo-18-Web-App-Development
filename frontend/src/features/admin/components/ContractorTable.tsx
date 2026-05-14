@@ -24,7 +24,7 @@ export function ContractorTable() {
   if (isLoading) {
     return (
       <div className="bg-card border border-border rounded-xl p-6">
-        <p className="text-sm text-muted-foreground">Loading contractors...</p>
+        <p className="text-sm text-muted-foreground">Cargando contratistas...</p>
       </div>
     )
   }
@@ -49,7 +49,7 @@ export function ContractorTable() {
             className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border hover:bg-muted transition-colors text-sm"
           >
             <Filter className="w-4 h-4" />
-            Filter
+            Filtrar
             <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? "rotate-180" : ""}`} />
           </button>
 
@@ -65,13 +65,13 @@ export function ContractorTable() {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          {filteredContractors.length} contractor{filteredContractors.length !== 1 ? "s" : ""}
+          {filteredContractors.length} contratista{filteredContractors.length !== 1 ? "s" : ""}
         </p>
       </div>
 
       {showFilters && (
         <div className="p-4 border-b border-border bg-muted/30">
-          <p className="text-sm font-medium text-foreground mb-3">Filter by status</p>
+          <p className="text-sm font-medium text-foreground mb-3">Filtrar por estado</p>
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setStatusFilter("all")}
@@ -80,7 +80,7 @@ export function ContractorTable() {
                 : "bg-background border border-border hover:bg-muted"
                 }`}
             >
-              All
+              Todos
             </button>
             {statusFilters.map((status) => (
               <button
@@ -103,12 +103,12 @@ export function ContractorTable() {
         <table className="w-full">
           <thead>
             <tr className="border-b border-border bg-muted/50">
-              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Contractor</th>
-              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Country</th>
-              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Status</th>
-              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Progress</th>
-              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Last Updated</th>
-              <th className="text-right px-6 py-3 text-sm font-medium text-muted-foreground">Actions</th>
+              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Contratista</th>
+              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">País</th>
+              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Estado</th>
+              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Avance</th>
+              <th className="text-left px-6 py-3 text-sm font-medium text-muted-foreground">Última actualización</th>
+              <th className="text-right px-6 py-3 text-sm font-medium text-muted-foreground">Acciones</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
@@ -182,11 +182,11 @@ export function ContractorTable() {
       {filteredContractors.length === 0 && (
         <div className="p-12 text-center">
           <User className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="font-medium text-foreground mb-1">No contractors found</h3>
+          <h3 className="font-medium text-foreground mb-1">No se encontraron contratistas</h3>
           <p className="text-sm text-muted-foreground">
             {statusFilter === "all"
-              ? "No contractors have been invited yet."
-              : `No contractors with status "${contractorStatusConfig[statusFilter].label}".`}
+              ? "Todavía no se invitó a ningún contratista."
+              : `No hay contratistas con estado "${contractorStatusConfig[statusFilter].label}".`}
           </p>
         </div>
       )}

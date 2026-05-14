@@ -3,35 +3,35 @@ import { Bell, Globe2, ShieldCheck, SlidersHorizontal, UsersRound } from 'lucide
 
 const settingsGroups = [
   {
-    title: 'Security & Access',
+    title: 'Seguridad y acceso',
     icon: ShieldCheck,
-    description: 'Control access policy, session timeout and role permissions for operations staff.',
-    items: ['Require 2FA for admins', 'Session timeout: 30 min', 'Allowed domains: northpay.com'],
+    description: 'Definí políticas de acceso, expiración de sesión y permisos por rol para el equipo operativo.',
+    items: ['Exigir 2FA para administradores', 'Tiempo de sesión: 30 min', 'Dominios permitidos: northpay.com'],
   },
   {
-    title: 'Onboarding Rules',
+    title: 'Reglas de onboarding',
     icon: SlidersHorizontal,
-    description: 'Define required fields and validations used in each onboarding step.',
-    items: ['Mandatory document types', 'Tax ID validation rules', 'Auto-expire invitations in 7 days'],
+    description: 'Configurá campos obligatorios y validaciones en cada etapa del onboarding.',
+    items: ['Tipos de documentos obligatorios', 'Reglas de validación fiscal', 'Vencimiento automático de invitaciones en 7 días'],
   },
   {
-    title: 'Notifications',
+    title: 'Notificaciones',
     icon: Bell,
-    description: 'Manage channels and templates for contractor and operator alerts.',
-    items: ['Email status updates', 'Correction request templates', 'Webhook delivery retries'],
+    description: 'Administrá canales y plantillas para alertas de contratistas y operadores.',
+    items: ['Actualizaciones de estado por email', 'Plantillas para solicitud de correcciones', 'Reintentos de entrega de webhooks'],
   },
   {
-    title: 'Localization',
+    title: 'Localización',
     icon: Globe2,
-    description: 'Prepare multi-country language, currency and date formatting preferences.',
-    items: ['Default locale: en-US', 'Support timezone overrides', 'Currency fallback mapping'],
+    description: 'Prepará preferencias por país para idioma, moneda y formato de fecha.',
+    items: ['Configuración regional predeterminada: es-AR', 'Soporte para zonas horarias personalizadas', 'Mapeo de moneda de respaldo'],
   },
 ]
 
 const AdminSettingsPage = () => {
   return (
     <section className="space-y-4">
-      <AdminHeader title="Settings" subtitle="Configuration surface ready for future integration" unreadCount={0} />
+      <AdminHeader title="Configuración" subtitle="Superficie de configuración lista para integraciones futuras" unreadCount={0} />
 
       <div className="space-y-4 p-6">
         <article className="rounded-xl border border-border bg-card p-4">
@@ -40,7 +40,7 @@ const AdminSettingsPage = () => {
               <UsersRound className="h-4 w-4" />
             </div>
             <p className="text-sm text-muted-foreground">
-              This screen provides the final IA and visual components. Backend teams can connect each module independently.
+              Esta pantalla presenta la arquitectura de información y los componentes visuales finales. El equipo backend puede conectar cada módulo de forma independiente.
             </p>
           </div>
         </article>

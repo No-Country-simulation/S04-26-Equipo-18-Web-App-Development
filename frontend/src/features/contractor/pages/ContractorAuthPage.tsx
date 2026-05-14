@@ -12,9 +12,9 @@ export const ContractorAuthPage = () => {
                 {/* Help Text */}
                 <div className="mt-6 text-center">
                     <p className="text-sm text-muted-foreground">
-                        {"Don't have an invitation token? "}
+                        {"¿No tenés un token de invitación? "}
                         <a href="mailto:support@northpay.com" className="text-primary hover:underline">
-                            Contact support
+                            Contactar soporte
                         </a>
                     </p>
                 </div>

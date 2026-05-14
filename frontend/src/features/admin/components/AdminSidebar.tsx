@@ -5,9 +5,9 @@ const AdminSidebar = () => {
 
 
     const navItems = [
-        { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-        { href: "/admin/notifications", label: "Notifications", icon: Bell },
-        { href: "/admin/settings", label: "Settings", icon: Settings },
+        { href: "/admin", label: "Panel", icon: LayoutDashboard },
+        { href: "/admin/notifications", label: "Notificaciones", icon: Bell },
+        { href: "/admin/settings", label: "Configuración", icon: Settings },
     ];
 
     return (
@@ -17,7 +17,7 @@ const AdminSidebar = () => {
                 <Link to="/admin" className="flex items-center gap-3">
                     <img className='h-14 fill-white bg-white rounded p-1' src="/northpay_nobackground_2x1.png" alt="NorthPay Logo" />
                     <div>
-                        <p className="text-xs text-sidebar-foreground/80">Admin Portal</p>
+                        <p className="text-xs text-sidebar-foreground/80">Portal de administración</p>
                     </div>
                 </Link>
             </div>
@@ -53,7 +53,7 @@ const AdminSidebar = () => {
                         <span className="text-sm font-medium text-sidebar-accent-foreground">OP</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-sidebar-foreground truncate">Operator</p>
+                        <p className="text-sm font-medium text-sidebar-foreground truncate">Operaciones</p>
                         <p className="text-xs text-sidebar-foreground/60 truncate">ops@northpay.com</p>
                     </div>
                     <NavLink to={'/'}>

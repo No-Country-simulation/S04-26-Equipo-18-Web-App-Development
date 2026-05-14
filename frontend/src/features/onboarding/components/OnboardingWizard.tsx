@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { Contractor, Document, OnboardingStep, PaymentMethod, PersonalData } from '@/shared/types'
 import { StepContract } from './StepContract'
 import { StepDocuments } from './StepDocuments'
@@ -52,16 +52,7 @@ export const OnboardingWizard = ({ contractor, onContractorUpdate }: OnboardingW
   const [contractSigned, setContractSigned] = useState(contractor.contractSigned)
   const [contractSignedAt, setContractSignedAt] = useState<Date | undefined>(contractor.contractSignedAt)
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod | undefined>(contractor.paymentMethod)
-
-  useEffect(() => {
-    setCurrentStep(contractor.currentStep)
-    setCompletedSteps(normalizeCompletedSteps(contractor))
-    setPersonalData(contractor.personalData)
-    setDocuments(contractor.documents)
-    setContractSigned(contractor.contractSigned)
-    setContractSignedAt(contractor.contractSignedAt)
-    setPaymentMethod(contractor.paymentMethod)
-  }, [contractor])
+  
 
   const currentStepIndex = steps.findIndex((step) => step.key === currentStep)
 
@@ -229,18 +220,16 @@ export const OnboardingWizard = ({ contractor, onContractorUpdate }: OnboardingW
     <div className="min-h-screen bg-background rounded shadow">
       <header className="sticky top-0 border-b border-border bg-card/80 backdrop-blur-sm">
         <div className="mx-auto max-w-6xl px-4 py-4">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3 text-center w-full">
+            <div className="flex items-center gap-3 py-4 w-full text-center justify-center">
               <div>
-                <h1 className="text-xl font-bold text-primary">Onboarding de contratistas</h1>
+                <h1 className="text-xl md:text-4xl font-bold text-primary">Onboarding</h1>
               </div>
-            </div>
-
-            <div className="text-right">
-              <p className="text-sm text-muted-foreground">
-                Paso {currentStepIndex + 1} de {steps.length}
-              </p>
-              <p className="text-xs text-muted-foreground">Flujo visual listo para integración</p>
+              <div className="text-right">
+                <p className="text-sm text-muted-foreground">
+                  Paso {currentStepIndex + 1} de {steps.length}
+                </p>
+              </div>
             </div>
           </div>
         </div>
